@@ -3,9 +3,11 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os/exec"
 
 	ui "github.com/gizak/termui/v3"
 	"github.com/gizak/termui/v3/widgets"
@@ -26,7 +28,7 @@ func main() {
 	p2 := widgets.NewParagraph()
 	p2.Text = "Press q to quit\nPress a or d to switch tabs\n"
 	p2.Title = "Keys"
-	p2.SetRect(5, 5, 40, 15)
+	p2.SetRect(5, 5, 100, 15)
 	p2.BorderStyle.Fg = ui.ColorYellow
 
 	// songs part
@@ -48,10 +50,27 @@ func main() {
 	sb := string(body)
 	bc.Text = sb
 	bc.Title = "Songs"
-	bc.SetRect(5, 5, 40, 15)
+	bc.SetRect(5, 5, 100, 15)
 	bc.BorderStyle.Fg = ui.ColorCyan
+	// show the songs
+	var stdout, stderr bytes.Buffer
+	cmd := exec.Command("sh", "-c", "ls -la music")
+	// show the output
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+	peo := cmd.Run()
+	if peo != nil {
+		fmt.Println(err)
+	}
+	// capture the stderr and stdout
+	ls := stdout.String() + stderr.String()
+	playlist := widgets.NewParagraph()
+	playlist.Text = ls
+	playlist.Title = "playlists"
+	playlist.SetRect(5, 5, 100, 15)
+	playlist.BorderStyle.Fg = ui.ColorGreen
 
-	tabpane := widgets.NewTabPane("help", "songs")
+	tabpane := widgets.NewTabPane("help", "download song", "songs")
 	tabpane.SetRect(0, 1, 50, 4)
 	tabpane.Border = true
 
@@ -61,6 +80,8 @@ func main() {
 			ui.Render(p2)
 		case 1:
 			ui.Render(bc)
+		case 2:
+			ui.Render(playlist)
 		}
 	}
 
