@@ -1,4 +1,4 @@
-**A simple tool to listen music in the terminal**
+**A simple tool to download and listen music in the terminal**
 
 
 **You will need:**
@@ -8,3 +8,7 @@
 - Deno
 - python
 - youtube-dl
+
+<img src="https://you-can.ml/monda/yessir.png">
+
+note: Doesen't work on windows lol

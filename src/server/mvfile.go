@@ -6,7 +6,7 @@ import (
 )
 
 func CreateFolder() {
-	del := exec.Command("sh", "-c", "mkdir src/clients/music")
+	del := exec.Command("sh", "-c", "mkdir src/client/music")
 	fmt.Println("music folder created")
 	delError := del.Run()
 	if delError != nil {
@@ -15,7 +15,7 @@ func CreateFolder() {
 }
 
 func MoveSong() {
-	del := exec.Command("sh", "-c", "mv *.mp3 src/clients/music")
+	del := exec.Command("sh", "-c", "mv *.mp3 src/client/music")
 	fmt.Println("all mp3 files moved to the music folder")
 	delError := del.Run()
 	if delError != nil {

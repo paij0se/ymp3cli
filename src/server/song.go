@@ -66,7 +66,7 @@ func DownloadSong(c echo.Context) error {
 		// move the mp3 files
 		MoveSong()
 		// play the song
-		cmd2 := exec.Command("sh", "-c", "mpg321 src/clients/music/*.mp3")
+		cmd2 := exec.Command("sh", "-c", "mpg321 src/client/music/*.mp3")
 		fmt.Println("Playing the song...")
 		uwu := cmd2.Run()
 		if uwu != nil {
