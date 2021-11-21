@@ -10,13 +10,11 @@ while (true) {
 
   const input = prompt(ink.colorize("<green>youtube url:</green>"));
   const del = prompt(
-    ink.colorize("<red>delete previous songs? (y:yes, n:no)</red>")
+    ink.colorize("<red>delete previous songs? (y:yes, n:no):</red>")
   );
   if (del === "y") {
     // delete previous songs
-    emptyDir("./music"); // this method return a promise.;
-  } else if (del === "n") {
-    console.log("🎵🎵🎶🎶🎶");
+    emptyDir("./music");
   }
   console.log(ink.colorize("<blue>avaiable songs:</blue>"));
   const rawResponse = await fetch("http://127.0.0.1:8000/download", {
