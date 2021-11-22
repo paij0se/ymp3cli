@@ -1,7 +1,7 @@
 package main
 
 import (
-	core "github.com/paij0se/ymp3/src/core"
+	core "github.com/paij0se/ymp3cli/src/core"
 )
 
 func main() {

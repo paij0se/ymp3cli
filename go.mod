@@ -1,4 +1,4 @@
-module github.com/paij0se/ymp3
+module github.com/paij0se/ymp3cli
 
 go 1.17
 
