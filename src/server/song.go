@@ -61,17 +61,10 @@ func DownloadSong(c echo.Context) error {
 		c.Response().Header().Set("Content-Type", "application/json")
 		c.Response().WriteHeader(http.StatusCreated)
 		json.NewEncoder(c.Response()).Encode(map[string]string{"video_downloaded": url, "output": output, "status": "success"})
-		// create the folder
-		CreateFolder()
 		// move the mp3 files
 		MoveSong()
 		// play the song
-		cmd2 := exec.Command("sh", "-c", "mpg321 music/*.mp3")
-		fmt.Println("Playing the song...")
-		uwu := cmd2.Run()
-		if uwu != nil {
-			fmt.Println(err)
-		}
+		PlayMuisc()
 
 	}
 	// send the response with the headers

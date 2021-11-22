@@ -5,8 +5,8 @@ import (
 	"os/exec"
 )
 
-func CreateFolder() {
-	del := exec.Command("sh", "-c", "mkdir music")
+func PlayMuisc() {
+	del := exec.Command("sh", "-c", "mpg321 music/*.mp3")
 	fmt.Println("music folder created")
 	delError := del.Run()
 	if delError != nil {
