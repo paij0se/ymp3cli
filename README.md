@@ -1,3 +1,5 @@
+🛑this cli still has a lot of bugs🛑
+
 <h1>A simple tool to download and listen music in the terminal.</h1>
 
 
