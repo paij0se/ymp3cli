@@ -25,7 +25,7 @@ while (true) {
     {
       name: "n",
       type: "number",
-      message: "type the number of the song you want to listen (if there is no songs just type s + enter to skip):",
+      message: "type the number of the song you want to listen (if there is no songs just type 99 + enter to skip):",
     },
   ]);
   const play = nsongs.n;
