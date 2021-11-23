@@ -9,3 +9,6 @@ var (
 type url struct {
 	Url string
 }
+type nsong struct {
+	Nsong int
+}

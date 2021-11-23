@@ -18,6 +18,23 @@ import (
 I need to storage the songs in a folder, and then I show the songs in the CLI client
 
 */
+
+func AskForPlayTheSong(c echo.Context) error {
+	var n nsong
+	reqBody, err := ioutil.ReadAll(c.Request().Body)
+	if err != nil {
+		fmt.Fprintf(c.Response(), "Error")
+	}
+	json.Unmarshal(reqBody, &n)
+
+	response := n.Nsong
+	fmt.Println(response)
+	// play the song
+	PlaySongOneByOne(response)
+
+	return nil
+}
+
 func DownloadSong(c echo.Context) error {
 	var inputUrl url
 
@@ -64,9 +81,9 @@ func DownloadSong(c echo.Context) error {
 		// move the mp3 files
 		MoveSong()
 		// play the song
-		PlayMuisc()
 
 	}
 	// send the response with the headers
 	return nil
+
 }

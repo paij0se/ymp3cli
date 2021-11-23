@@ -1,7 +1,8 @@
 import * as peo from "https://denopkg.com/iamnathanj/cursor@v2.2.0/mod.ts";
 import * as ink from "https://deno.land/x/ink@1.3/mod.ts";
 import { emptyDir } from "https://deno.land/std/fs/mod.ts";
-import { showSongs, fileNames } from "./utils/showSongs.ts";
+import Ask from "https://deno.land/x/ask@1.0.6/mod.ts";
+const url = "http://127.0.0.1:8000/";
 // clear screen
 await peo.clearScreen();
 console.log(
@@ -11,27 +12,39 @@ console.log(
   "version 0.0.1\n"
 );
 while (true) {
-  console.log(ink.colorize(`<magenta>avaiable songs:\n${showSongs}</magenta>`));
+  // get the available songs and display them with the option to play one by one
+  const avaiableSongs = await fetch(`${url}songs`, {
+    method: "GET",
+  });
+  const songs = await avaiableSongs.text();
+  console.log(ink.colorize(`<magenta>avaiable songs:\n${songs}</magenta>`));
 
-  const input = prompt(ink.colorize("<green>youtube url:</green>"));
+  const ask = new Ask(); // global options are also supported! (see below)
+
+  const nsongs = await ask.prompt([
+    {
+      name: "n",
+      type: "number",
+      message: "type the number of the song you want to listen (if there is no songs just type 10 to skip):",
+    },
+  ]);
+  const play = nsongs.n;
+
+  const nSong = await fetch(`${url}y`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      nsong: play,
+    }),
+  });
+  const content1 = await nSong.text();
+  console.log(content1);
+
+  const input = prompt(ink.colorize("<green>? youtube url:</green>"));
   console.log(ink.colorize(`<yellow>downloading: ${input}</yellow>`));
-  const play = prompt(
-    ink.colorize("<blue>play a random song? (y:yes, n:no):</blue>")
-  );
-  if (play === "y") {
-    const randomSong = fileNames[Math.floor(Math.random() * fileNames.length)];
-    console.log(ink.colorize(`<yellow>playing: ${randomSong} </yellow>`));
-    // play a random song from the music folder
-    const process = Deno.run({
-      cmd: ["mpg321", "music/" + randomSong],
-      stdout: "piped",
-      stderr: "piped",
-    });
-
-    const output = await process.output();
-    const outStr = new TextDecoder().decode(output);
-    console.log(outStr);
-  }
   const del = prompt(
     ink.colorize("<red>delete previous songs? (y:yes, n:no):</red>")
   );
@@ -39,7 +52,7 @@ while (true) {
     // delete previous songs
     emptyDir("./music");
   }
-  const rawResponse = await fetch("http://127.0.0.1:8000/download", {
+  const rawResponse = await fetch(`${url}download`, {
     method: "POST",
     headers: {
       Accept: "application/json",

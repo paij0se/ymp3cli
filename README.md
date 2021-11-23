@@ -3,10 +3,8 @@
 
 **You will need:**
 
-- mpg321
 - Golang
 - Deno
-- python
 - youtube-dl
 
 <h1>Install instructions</h1>
@@ -18,3 +16,10 @@ and for execute ymp3cli just run ```bash ymp3cli.sh```
 <img src="https://you-can.ml/monda/yessir.png">
 
 note: Doesen't work on windows lol
+
+<h1>TODO:</h1>
+
+- [ ] client in golang
+- [ ] download the videos without youtube-dl
+- [ ] work on windows
+- [*] able to play a song one by one
