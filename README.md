@@ -3,15 +3,15 @@
 
 **You will need:**
 
-- Golang
-- Deno
+- golang
+- deno v1.16+
 - youtube-dl
 
 <h1>Install instructions</h1>
 
 - linux and macOS
 
-install the oto dependencies ```sudo apt install libasound2-dev```
+for linux install the oto dependencies ```sudo apt install libasound2-dev```,
 for macOS Oto requies `AudioToolbox.framework`, but this is automatically linked.
 
 run ```bash install.sh``` to install the dependencies.
