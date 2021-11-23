@@ -1,4 +1,6 @@
-*.mp3
-.vscode
+.vscode/
+music/
+test/
+
 go.sum
-test
+*.mp3
