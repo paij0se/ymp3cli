@@ -31,4 +31,4 @@ while true; do
 done
 
 
-deno run --allow-env --allow-net --allow-read --unstable src/mod.ts
+deno run --allow-env --allow-net --allow-read --allow-write --unstable src/mod.ts
