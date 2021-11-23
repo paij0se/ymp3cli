@@ -14,32 +14,36 @@ import (
 
 func Core() {
 	e := echo.New()
+
+	// Middlewares
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
-	/*
-		Routes
-	*/
+
+	// Routes
 	e.GET("/", func(c echo.Context) error {
 		c.String(http.StatusOK, "hello 💀")
+
 		return nil
 	})
+
 	e.POST("/download", server.DownloadSong)
+
 	e.POST("/y", server.AskForPlayTheSong)
-	/*
 
-	   show the songs in the music folder
-
-	*/
+	// Show the songs / music stored in the folder.
 	e.GET("/songs", func(c echo.Context) error {
 		files, err := ioutil.ReadDir("music")
+
 		if err != nil {
 			log.Fatal(err)
-		}
-		for i, file := range files {
-			n := strconv.Itoa(i)
-			json.NewEncoder(c.Response()).Encode(map[string]string{"[" + n + "]": file.Name()})
 
 		}
+
+		for i, file := range files {
+			json.NewEncoder(c.Response()).Encode(map[string]string{"[" + strconv.Itoa(i) + "]": file.Name()})
+
+		}
+
 		return nil
 	})
 
