@@ -25,7 +25,7 @@ while (true) {
     {
       name: "n",
       type: "number",
-      message: "type the number of the song you want to listen (if there is no songs just type 10 to skip):",
+      message: "type the number of the song you want to listen (if there is no songs just type 10 + enter to skip):",
     },
   ]);
   const play = nsongs.n;
@@ -43,7 +43,7 @@ while (true) {
   const content1 = await nSong.text();
   console.log(content1);
 
-  const input = prompt(ink.colorize("<green>? youtube url:</green>"));
+  const input = prompt(ink.colorize("<green>? youtube url for download the song (you can type s + enter for skip):</green>"));
   console.log(ink.colorize(`<yellow>downloading: ${input}</yellow>`));
   const del = prompt(
     ink.colorize("<red>delete previous songs? (y:yes, n:no):</red>")
