@@ -24,5 +24,6 @@ and for execute ymp3cli just run ```bash ymp3cli.sh```.
 
 - [ ] client in golang
 - [ ] download the videos without youtube-dl
-- [ ] work on windows
+- [ ] works correctly in windows
+- [ ] able to pause and  rewind the songs
 - [x] able to play a song one by one
