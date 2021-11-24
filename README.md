@@ -16,9 +16,9 @@
 for linux install the oto dependencies ```sudo apt install libasound2-dev```,
 for macOS Oto requies `AudioToolbox.framework`, but this is automatically linked.
 
-run ```bash install.sh``` to install the dependencies.
+run ```./install.sh``` to install the dependencies.
 
-and for execute ymp3cli just run ```bash ymp3cli.sh```.
+and for execute ymp3cli just run ```./ymp3cli```.
 
 <img src="https://you-can.ml/monda/yessir.png">
 
