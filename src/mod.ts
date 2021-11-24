@@ -21,16 +21,16 @@ await (async (): Promise<void> => {
 
   while (true) {
     /** @type {Response} ─ Description. */
-    const avaiableSongs: Response = await fetch(url + "songs", {
+    const availablebleSongs: Response = await fetch(url + "songs", {
       method: "GET"
     });
 
     /**@type {string} ─ Description. */
-    const songs: string = await avaiableSongs.text();
+    const songs: string = await availableSongs.text();
 
 
     console.log(
-      ink.colorize(`<magenta>avaiable songs:\n${songs}</magenta>`)
+      ink.colorize(`<magenta>available songs:\n${songs}</magenta>`)
     );
 
     
