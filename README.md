@@ -29,3 +29,6 @@ and for execute ymp3cli just run ```bash ymp3cli.sh```.
 - [ ] works correctly in windows
 - [ ] able to pause and  rewind the songs
 - [x] able to play a song one by one
+
+<h1>Custom clients?</h1>
+- visit the wiki https://github.com/paij0se/ymp3cli/wiki/Routes
