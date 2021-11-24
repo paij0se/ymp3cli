@@ -30,6 +30,7 @@ func AskForPlayTheSong(c echo.Context) error {
 	response := n.Nsong
 	fmt.Println(response)
 	// play the song
+	json.NewEncoder(c.Response()).Encode(map[string]string{"message": "song played"})
 	PlaySongOneByOne(response)
 
 	return nil
