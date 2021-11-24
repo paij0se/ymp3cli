@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 echo downloading dependencies
-go get .
-echo dependencies installed, now run ymp3cli.sh to start
+cd src ; go get . ; cd ..
+echo dependencies installed, now run ./ymp3cli to start
