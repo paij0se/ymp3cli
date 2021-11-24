@@ -21,7 +21,7 @@ await (async (): Promise<void> => {
 
   while (true) {
     /** @type {Response} ─ Description. */
-    const availablebleSongs: Response = await fetch(url + "songs", {
+    const availableSongs: Response = await fetch(url + "songs", {
       method: "GET"
     });
 
