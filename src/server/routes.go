@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os/exec"
 	"strings"
@@ -20,11 +21,17 @@ func DeleteRequest(c echo.Context) error {
 		fmt.Fprintf(c.Response(), "Error")
 	}
 	json.Unmarshal(reqBody, &d)
-	r := d.Delete
-	fmt.Println("delete input:", r)
-	json.NewEncoder(c.Response()).Encode(map[string]string{"message": "song deleted"})
-	// delete the song
-	DeleteSong(r)
+
+	files, err := ioutil.ReadDir("music")
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, file := range files {
+		fmt.Println("file size:", file.Size())
+	}
+	// delete the song and send the response
+	json.NewEncoder(c.Response()).Encode(map[string]string{"song_deleted": files[d.Delete].Name()})
+	DeleteSong(d.Delete)
 	return nil
 }
 
@@ -36,11 +43,17 @@ func AskForPlayTheSong(c echo.Context) error {
 	}
 	json.Unmarshal(reqBody, &n)
 
-	response := n.Nsong
-	fmt.Println(response)
-	// play the song
-	json.NewEncoder(c.Response()).Encode(map[string]string{"message": "song played"})
-	PlaySongOneByOne(response)
+	fmt.Println(n.Nsong)
+	files, err := ioutil.ReadDir("music")
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, file := range files {
+		fmt.Println("file size:", file.Size())
+	}
+	// play the song and send the response
+	json.NewEncoder(c.Response()).Encode(map[string]string{"song_played": files[n.Nsong].Name()})
+	PlaySongOneByOne(n.Nsong)
 
 	return nil
 }

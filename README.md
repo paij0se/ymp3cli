@@ -22,6 +22,8 @@ and for execute ymp3cli just run ```./ymp3cli```.
 
 <img src="https://you-can.ml/monda/yessir.png">
 
+<img src="https://you-can.ml/monda/ymp3cli.png">
+
 <h1>TODO:</h1>
 
 - [ ] client in golang
