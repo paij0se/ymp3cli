@@ -12,3 +12,6 @@ type url struct {
 type nsong struct {
 	Nsong int
 }
+type delete struct {
+	Delete int
+}

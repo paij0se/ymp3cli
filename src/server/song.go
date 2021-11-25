@@ -13,11 +13,20 @@ import (
 	"github.com/labstack/echo"
 )
 
-/*
-
-I need to storage the songs in a folder, and then I show the songs in the CLI client
-
-*/
+func DeleteRequest(c echo.Context) error {
+	var d delete
+	reqBody, err := ioutil.ReadAll(c.Request().Body)
+	if err != nil {
+		fmt.Fprintf(c.Response(), "Error")
+	}
+	json.Unmarshal(reqBody, &d)
+	r := d.Delete
+	fmt.Println("delete input:", r)
+	json.NewEncoder(c.Response()).Encode(map[string]string{"message": "song deleted"})
+	// delete the song
+	DeleteSong(r)
+	return nil
+}
 
 func AskForPlayTheSong(c echo.Context) error {
 	var n nsong

@@ -21,48 +21,19 @@ func MoveSong() {
 	}
 }
 
-/*
-func PlaySongs() error {
-	// get all the files in the music directory
+func DeleteSong(song int) error {
 	files, err := ioutil.ReadDir("music")
 	if err != nil {
 		log.Fatal(err)
-	} // check if there is any mp3 file in the music folder
-	if len(files) == 0 {
-		fmt.Println("No mp3 files in the music folder.")
-	} else {
-
-		for _, file := range files {
-			// play the songs
-			f, err := os.Open("music/" + file.Name())
-			if err != nil {
-				fmt.Println("error")
-			}
-			defer f.Close()
-			d, err := mp3.NewDecoder(f)
-			if err != nil {
-				return err
-			}
-
-			c, err := oto.NewContext(d.SampleRate(), 2, 2, 8192)
-			if err != nil {
-				return err
-			}
-			defer c.Close()
-
-			p := c.NewPlayer()
-			defer p.Close()
-
-			fmt.Printf("playing: %s\n", f.Name())
-
-			if _, err := io.Copy(p, d); err != nil {
-				return err
-			}
-		}
 	}
+	for _, file := range files {
+		os.Remove("music/" + files[song].Name())
+		fmt.Println("file size:", file.Size())
+	}
+
 	return nil
 }
-*/
+
 func PlaySongOneByOne(song int) error {
 	files, err := ioutil.ReadDir("music")
 	if err != nil {
@@ -76,7 +47,7 @@ func PlaySongOneByOne(song int) error {
 			// play the song
 			f, err := os.Open("music/" + files[song].Name())
 			if err != nil {
-				fmt.Println("error")
+				log.Fatal(err)
 			}
 			defer f.Close()
 			d, err := mp3.NewDecoder(f)
