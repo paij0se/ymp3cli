@@ -67,7 +67,7 @@ await (async (): Promise<void> => {
       body: JSON.stringify({
         delete: nsongs.d,
       }),
-      method: "POST",
+      method: "DELETE",
     });
     /** @type {string} ─ Description. */
     const contentDelete: string = await deleteSong.text();

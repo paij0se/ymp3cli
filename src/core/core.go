@@ -46,7 +46,7 @@ func Core() {
 
 		return nil
 	})
-	e.POST("/delete", server.DeleteRequest)
+	e.DELETE("/delete", server.DeleteRequest)
 
 	e.Logger.Fatal(e.Start(":8000"))
 }
