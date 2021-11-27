@@ -34,3 +34,6 @@ and for execute ymp3cli just run ```./ymp3cli```.
 
 <h1>Custom clients?</h1>
 - visit the wiki https://github.com/paij0se/ymp3cli/wiki/Routes
+
+<h1>Alternative clients<h1>
+- The old deno client https://github.com/bruh-boys/ymp3cli-old-client
