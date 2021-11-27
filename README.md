@@ -6,7 +6,6 @@
 **You will need:**
 
 - golang
-- deno v1.16+
 - youtube-dl https://github.com/ytdl-org/youtube-dl/releases/tag/2021.06.06
 
 <h1>Install instructions</h1>
