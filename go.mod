@@ -4,14 +4,12 @@ go 1.17
 
 require (
 	github.com/ELPanaJose/api-deno-compiler v0.0.0-20211015071127-3908b3cc08f6
+	github.com/ELPanaJose/pairat v0.0.3
 	github.com/labstack/echo v3.3.10+incompatible
+	github.com/manifoldco/promptui v0.9.0
 )
 
-require (
-	github.com/ELPanaJose/pairat v0.0.3 // indirect
-	github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e // indirect
-	github.com/manifoldco/promptui v0.9.0 // indirect
-)
+require github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e // indirect
 
 require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
