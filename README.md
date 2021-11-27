@@ -26,9 +26,9 @@ and for execute ymp3cli just run ```./ymp3cli```.
 
 <h1>TODO:</h1>
 
-- [ ] client in golang
+- [x] client in golang
 - [ ] download the videos without youtube-dl
-- [ ] works correctly in windows
+- [?] works correctly in windows (Not tested yet)
 - [ ] able to pause and  rewind the songs
 - [x] able to play a song one by one
 

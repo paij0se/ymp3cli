@@ -8,6 +8,12 @@ require (
 )
 
 require (
+	github.com/ELPanaJose/pairat v0.0.3 // indirect
+	github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e // indirect
+	github.com/manifoldco/promptui v0.9.0 // indirect
+)
+
+require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/hajimehoshi/go-mp3 v0.3.2 // direct
 	github.com/hajimehoshi/oto v1.0.1 // direct

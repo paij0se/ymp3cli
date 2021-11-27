@@ -7,17 +7,30 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"runtime"
 
 	"github.com/hajimehoshi/go-mp3"
 	"github.com/hajimehoshi/oto"
 )
 
 func MoveSong() {
-	del := exec.Command("sh", "-c", "mv *.mp3 music")
-	fmt.Println("all mp3 files moved to the music folder")
-	delError := del.Run()
-	if delError != nil {
-		fmt.Println(delError)
+	switch runtime.GOOS {
+	case "linux", "darwin":
+		del := exec.Command("sh", "-c", "mv *.mp3 music")
+		fmt.Println("all mp3 files moved to the music folder")
+		delError := del.Run()
+		if delError != nil {
+			fmt.Println(delError)
+		}
+	case "windows":
+		del := exec.Command(`cmd`, `/C`, "move *.mp3 music")
+		fmt.Println("all mp3 files moved to the music folder")
+		delError := del.Run()
+		if delError != nil {
+			fmt.Println(delError)
+		}
+	default:
+		fmt.Println("unknown OS")
 	}
 }
 
