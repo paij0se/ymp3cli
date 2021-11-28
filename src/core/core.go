@@ -2,8 +2,8 @@ package core
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strconv"
 
@@ -36,7 +36,7 @@ func Core() {
 		files, err := ioutil.ReadDir("music")
 
 		if err != nil {
-			log.Fatal(err)
+			fmt.Println(err)
 
 		}
 

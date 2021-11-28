@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os/exec"
 	"runtime"
@@ -25,7 +24,7 @@ func DeleteRequest(c echo.Context) error {
 
 	files, err := ioutil.ReadDir("music")
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 	}
 	for _, file := range files {
 		fmt.Println("file size:", file.Size())
@@ -47,7 +46,7 @@ func AskForPlayTheSong(c echo.Context) error {
 	fmt.Println(n.Nsong)
 	files, err := ioutil.ReadDir("music")
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 	}
 	for _, file := range files {
 		fmt.Println("file size:", file.Size())

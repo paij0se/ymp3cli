@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"log"
 	"os"
 	"os/exec"
 	"runtime"
@@ -37,7 +36,7 @@ func MoveSong() {
 func DeleteSong(song int) error {
 	files, err := ioutil.ReadDir("music")
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 	}
 	for _, file := range files {
 		os.Remove("music/" + files[song].Name())
@@ -50,7 +49,7 @@ func DeleteSong(song int) error {
 func PlaySongOneByOne(song int) error {
 	files, err := ioutil.ReadDir("music")
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 	} // check if there is any mp3 file in the music folder
 	if len(files) == 0 {
 		fmt.Println("No mp3 files in the music folder.")
@@ -60,7 +59,7 @@ func PlaySongOneByOne(song int) error {
 			// play the song
 			f, err := os.Open("music/" + files[song].Name())
 			if err != nil {
-				log.Fatal(err)
+				fmt.Println(err)
 			}
 			defer f.Close()
 			d, err := mp3.NewDecoder(f)
