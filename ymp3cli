@@ -7,8 +7,6 @@ URL="http://127.0.0.1:8000/"
 
 # Prevents the server continuing to run if the terminal dies.
 trap 'kill $(ps -o pid= --ppid $$) 2>/dev/null' exit
-pip3 install spotdl
-clear
 mkdir -p music
 
 

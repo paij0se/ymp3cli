@@ -1,5 +1,6 @@
 #!/bin/bash
 echo downloading dependencies
+pip3 install spotdl
 cd src ; go get . ; cd ..
 go mod download github.com/ELPanaJose/pairat
 go mod download github.com/manifoldco/promptui
