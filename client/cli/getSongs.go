@@ -21,7 +21,7 @@ func GetSongs() {
 	sb := string(body)
 	// check if the body is empty
 	if len(sb) == 0 {
-		fmt.Println("No songs found, Download them😛")
+		fmt.Println("🐶No songs found, Download them👻")
 	} else {
 		// Print the body in blue
 		fmt.Printf("\x1b[34m%s\x1b[0m\n", sb)

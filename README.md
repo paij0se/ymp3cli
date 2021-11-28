@@ -7,6 +7,7 @@
 
 - golang
 - youtube-dl https://github.com/ytdl-org/youtube-dl/releases/tag/2021.06.06
+- ffmpeg
 
 <h1>Install instructions</h1>
 

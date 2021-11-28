@@ -65,7 +65,7 @@ func main() {
 		}
 		// print the content of the text file
 		fmt.Println(string(data))
-		fmt.Printf("version 0.0.3\nType <ctrl + c> to exit.\n")
+		fmt.Printf("version 0.0.4\nType <ctrl + c> to exit.\n")
 		fmt.Println("Avaliable songs:")
 		// get the songs
 		cli.GetSongs()
@@ -85,7 +85,7 @@ func main() {
 			Success: "{{ . | bold }} ",
 		}
 		promptUrl := promptui.Prompt{
-			Label:     "🤓Insert a youtube url to download the song (you can type <99 + Enter> for skip)🍱:",
+			Label:     "🤓Insert a Youtube url to download the song (you can type <99 + Enter> for skip)🍱:",
 			Validate:  validateUrl,
 			Templates: templates,
 			Default:   url,
@@ -99,6 +99,29 @@ func main() {
 		}
 		// Download the song
 		cli.DownloadRequest(resultUrl)
+		// spotify download ------------------------------------------------------------------------------------
+		validateSpotify := func(input string) error {
+			if len(input) == 0 {
+				return errors.New("empty url")
+			}
+			return nil
+		}
+
+		promptSpotify := promptui.Prompt{
+			Label:     "🐢Insert a Spotify url to download the song/playlist (you can type <99 + Enter> for skip)🥒:",
+			Validate:  validateSpotify,
+			Templates: templates,
+			Default:   url,
+		}
+
+		resultSpotify, err2 := promptSpotify.Run()
+
+		if err2 != nil {
+			fmt.Printf("Prompt failed %v\n", err)
+			return
+		}
+		// download the spotify song/playlist
+		cli.DownloadSpotify(resultSpotify)
 		//show the avaliable songs
 		fmt.Println("Avaliable songs:")
 		cli.GetSongs()

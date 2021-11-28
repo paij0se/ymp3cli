@@ -27,6 +27,7 @@ func Core() {
 	})
 
 	e.POST("/download", server.DownloadSong)
+	e.POST("/spotify", server.SpotifyDownloader)
 
 	e.POST("/y", server.AskForPlayTheSong)
 
