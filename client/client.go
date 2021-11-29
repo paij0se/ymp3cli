@@ -57,7 +57,7 @@ func Clientmain() {
 			return
 		}
 		defer file.Close()
-		// convert file into string
+		// convert file into string 🍦
 		data, err := ioutil.ReadAll(file)
 		if err != nil {
 			fmt.Println(err)

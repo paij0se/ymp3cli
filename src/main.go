@@ -15,7 +15,7 @@ func main() {
 	}
 	// execute the client in a go routine
 	go client.Clientmain()
-	// execute the router, then wait 2 seconds
+	// execute the router, then wait 2 seconds 🍦
 	router.SetUpRoutes()
 	time.Sleep(2 * time.Second)
 
