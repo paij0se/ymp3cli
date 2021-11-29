@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	// create the folder music in ./local/music if doesent exists
+	// create the folder music if doesent exists
 	if _, err := os.Stat("music"); os.IsNotExist(err) {
 		os.Mkdir("music", 0777)
 	}
