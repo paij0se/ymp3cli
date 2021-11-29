@@ -14,9 +14,8 @@ import (
 
 func Core() {
 	e := echo.New()
-
+	//e.Use(middleware.Logger())
 	// Middlewares
-	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
 	// Routes
@@ -25,12 +24,9 @@ func Core() {
 
 		return nil
 	})
-
 	e.POST("/download", server.DownloadSong)
 	e.POST("/spotify", server.SpotifyDownloader)
-
 	e.POST("/y", server.AskForPlayTheSong)
-
 	// Show the songs / music stored in the folder.
 	e.GET("/songs", func(c echo.Context) error {
 		files, err := ioutil.ReadDir("music")

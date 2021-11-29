@@ -26,13 +26,19 @@ func DeleteRequest(c echo.Context) error {
 	if err != nil {
 		fmt.Println(err)
 	}
-	for _, file := range files {
-		fmt.Println("file size:", file.Size())
+	// if the files is out of range, return error
+	if d.Delete > len(files) {
+		c.Response().Header().Set("Content-Type", "application/json")
+		c.Response().WriteHeader(http.StatusCreated)
+		json.NewEncoder(c.Response()).Encode(map[string]string{"error": "out of range"})
+		return nil
+	} else {
+		// delete the song and send the response
+		json.NewEncoder(c.Response()).Encode(map[string]string{"song_deleted": files[d.Delete].Name()})
+		DeleteSong(d.Delete)
+		return nil
 	}
-	// delete the song and send the response
-	json.NewEncoder(c.Response()).Encode(map[string]string{"song_deleted": files[d.Delete].Name()})
-	DeleteSong(d.Delete)
-	return nil
+
 }
 
 func AskForPlayTheSong(c echo.Context) error {
@@ -43,19 +49,24 @@ func AskForPlayTheSong(c echo.Context) error {
 	}
 	json.Unmarshal(reqBody, &n)
 
-	fmt.Println(n.Nsong)
+	//fmt.Println(n.Nsong)
 	files, err := ioutil.ReadDir("music")
 	if err != nil {
 		fmt.Println(err)
 	}
-	for _, file := range files {
-		fmt.Println("file size:", file.Size())
+	// if the files is out of range, return error
+	if n.Nsong > len(files) {
+		c.Response().Header().Set("Content-Type", "application/json")
+		c.Response().WriteHeader(http.StatusCreated)
+		json.NewEncoder(c.Response()).Encode(map[string]string{"error": "out of range"})
+		return nil
+	} else {
+		// play the song and send the response
+		json.NewEncoder(c.Response()).Encode(map[string]string{"song_played": files[n.Nsong].Name()})
+		PlaySongOneByOne(n.Nsong)
+		return nil
 	}
-	// play the song and send the response
-	json.NewEncoder(c.Response()).Encode(map[string]string{"song_played": files[n.Nsong].Name()})
-	PlaySongOneByOne(n.Nsong)
 
-	return nil
 }
 
 func DownloadSong(c echo.Context) error {
@@ -72,7 +83,7 @@ func DownloadSong(c echo.Context) error {
 		url := inputUrl.Url
 		// check if the url is empty and match only youtube links
 		switch {
-		case len(url) == 0:
+		case url == "":
 			c.Response().Header().Set("Content-Type", "application/json")
 			c.Response().WriteHeader(http.StatusCreated)
 			json.NewEncoder(c.Response()).Encode(map[string]string{"error": "empty url!"})
@@ -81,7 +92,7 @@ func DownloadSong(c echo.Context) error {
 			c.Response().WriteHeader(http.StatusCreated)
 			json.NewEncoder(c.Response()).Encode(map[string]string{"error": "not a youtube url!"})
 		default:
-			fmt.Println(url)
+			//fmt.Println(url)
 			var stdout, stderr bytes.Buffer
 			// download the video
 			// https://www.youtube.com/watch?v=rcdvi74dUjQ
@@ -98,7 +109,7 @@ func DownloadSong(c echo.Context) error {
 			executedOut := stdout.String() + stderr.String()
 			out2 := strings.ReplaceAll(executedOut, "sh: 1: kill: No such process", "")
 			output := noansi.NoAnsi(out2)
-			fmt.Println(output)
+			//fmt.Println(output)
 			// send thge response
 			c.Response().Header().Set("Content-Type", "application/json")
 			c.Response().WriteHeader(http.StatusCreated)
@@ -120,7 +131,7 @@ func DownloadSong(c echo.Context) error {
 		url := inputUrl.Url
 		// check if the url is empty and match only youtube links
 		switch {
-		case len(url) == 0:
+		case url == "":
 			c.Response().Header().Set("Content-Type", "application/json")
 			c.Response().WriteHeader(http.StatusCreated)
 			json.NewEncoder(c.Response()).Encode(map[string]string{"error": "empty url!"})
@@ -129,7 +140,7 @@ func DownloadSong(c echo.Context) error {
 			c.Response().WriteHeader(http.StatusCreated)
 			json.NewEncoder(c.Response()).Encode(map[string]string{"error": "not a youtube url!"})
 		default:
-			fmt.Println(url)
+			//fmt.Println(url)
 			var stdout, stderr bytes.Buffer
 			// download the video
 			cmd := exec.Command(`cmd`, `/C`, "youtube-dl -x --audio-format mp3 "+url)

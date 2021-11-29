@@ -16,14 +16,14 @@ func MoveSong() {
 	switch runtime.GOOS {
 	case "linux", "darwin":
 		del := exec.Command("sh", "-c", "mv *.mp3 music")
-		fmt.Println("all mp3 files moved to the music folder")
+		//fmt.Println("all mp3 files moved to the music folder")
 		delError := del.Run()
 		if delError != nil {
 			fmt.Println(delError)
 		}
 	case "windows":
 		del := exec.Command(`cmd`, `/C`, "move *.mp3 music")
-		fmt.Println("all mp3 files moved to the music folder")
+		//fmt.Println("all mp3 files moved to the music folder")
 		delError := del.Run()
 		if delError != nil {
 			fmt.Println(delError)
@@ -38,11 +38,7 @@ func DeleteSong(song int) error {
 	if err != nil {
 		fmt.Println(err)
 	}
-	for _, file := range files {
-		os.Remove("music/" + files[song].Name())
-		fmt.Println("file size:", file.Size())
-	}
-
+	os.Remove("music/" + files[song].Name())
 	return nil
 }
 
@@ -55,34 +51,30 @@ func PlaySongOneByOne(song int) error {
 		fmt.Println("No mp3 files in the music folder.")
 	} else {
 
-		for _, file := range files {
-			// play the song
-			f, err := os.Open("music/" + files[song].Name())
-			if err != nil {
-				fmt.Println(err)
-			}
-			defer f.Close()
-			d, err := mp3.NewDecoder(f)
-			if err != nil {
-				return err
-			}
-			fmt.Println("file size:", file.Size())
+		// play the song
+		f, err := os.Open("music/" + files[song].Name())
+		if err != nil {
+			fmt.Println(err)
+		}
+		defer f.Close()
+		d, err := mp3.NewDecoder(f)
+		if err != nil {
+			return err
+		}
 
-			c, err := oto.NewContext(d.SampleRate(), 2, 2, 8192)
-			if err != nil {
-				return err
-			}
-			defer c.Close()
+		c, err := oto.NewContext(d.SampleRate(), 2, 2, 8192)
+		if err != nil {
+			return err
+		}
+		defer c.Close()
 
-			p := c.NewPlayer()
-			defer p.Close()
+		p := c.NewPlayer()
+		defer p.Close()
 
-			fmt.Printf("playing: %s\n", f.Name())
-
-			if _, err := io.Copy(p, d); err != nil {
-				return err
-			}
+		if _, err := io.Copy(p, d); err != nil {
+			return err
 		}
 	}
+
 	return nil
 }

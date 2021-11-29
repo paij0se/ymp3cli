@@ -1,4 +1,4 @@
-package main
+package client
 
 import (
 	"errors"
@@ -48,7 +48,7 @@ func cliDeleteSong(deleteSong int) {
 	cli.DeleteSong(deleteSong)
 }
 
-func main() {
+func Clientmain() {
 	for {
 		//open the welcome.txt file
 		file, err := os.Open("client/welcome.txt")
