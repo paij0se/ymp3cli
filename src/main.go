@@ -2,9 +2,10 @@ package main
 
 import (
 	"os"
+	"time"
 
 	client "github.com/paij0se/ymp3cli/client"
-	core "github.com/paij0se/ymp3cli/src/core"
+	router "github.com/paij0se/ymp3cli/src/router"
 )
 
 func main() {
@@ -14,7 +15,8 @@ func main() {
 	}
 	// execute the client in a go routine
 	go client.Clientmain()
-	// execute the server
-	core.Core()
+	// execute the router, then wait 2 seconds
+	router.SetUpRoutes()
+	time.Sleep(2 * time.Second)
 
 }

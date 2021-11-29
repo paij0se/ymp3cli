@@ -10,7 +10,7 @@ import (
 
 	clear "github.com/ELPanaJose/pairat/src/utils"
 	"github.com/manifoldco/promptui"
-	"github.com/paij0se/ymp3cli/client/cli"
+	"github.com/paij0se/ymp3cli/client/cliRequests"
 )
 
 func cliDeleteSong(deleteSong int) {
@@ -45,7 +45,7 @@ func cliDeleteSong(deleteSong int) {
 	}
 	deleteSong = number
 
-	cli.DeleteSong(deleteSong)
+	cliRequests.DeleteSong(deleteSong)
 }
 
 func Clientmain() {
@@ -68,7 +68,7 @@ func Clientmain() {
 		fmt.Printf("version 0.0.5\nType <ctrl + c> to exit.\n")
 		fmt.Println("Avaliable songs:")
 		// get the songs
-		cli.GetSongs()
+		cliRequests.GetSongs()
 		// ask for download the song
 		validateUrl := func(input string) error {
 			if len(input) == 0 {
@@ -98,7 +98,7 @@ func Clientmain() {
 			return
 		}
 		// Download the song
-		cli.DownloadRequest(resultUrl)
+		cliRequests.DownloadRequest(resultUrl)
 		// spotify download ------------------------------------------------------------------------------------
 		validateSpotify := func(input string) error {
 			if len(input) == 0 {
@@ -121,10 +121,10 @@ func Clientmain() {
 			return
 		}
 		// download the spotify song/playlist
-		cli.DownloadSpotify(resultSpotify)
+		cliRequests.DownloadSpotify(resultSpotify)
 		//show the avaliable songs
 		fmt.Println("Avaliable songs:")
-		cli.GetSongs()
+		cliRequests.GetSongs()
 		// ask the number of the song you want to listen
 		validate := func(input string) error {
 			_, err := strconv.ParseFloat(input, 64)
@@ -149,7 +149,7 @@ func Clientmain() {
 			fmt.Printf("Error converting %s to int %v\n", result, err)
 			return
 		}
-		cli.ChooseSong(number)
+		cliRequests.ChooseSong(number)
 		// ask if delete the song
 		cliDeleteSong(number)
 		// clear the screen

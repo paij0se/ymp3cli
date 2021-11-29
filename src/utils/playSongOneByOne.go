@@ -1,46 +1,14 @@
-package server
+package utils
 
 import (
 	"fmt"
 	"io"
 	"io/ioutil"
 	"os"
-	"os/exec"
-	"runtime"
 
 	"github.com/hajimehoshi/go-mp3"
 	"github.com/hajimehoshi/oto"
 )
-
-func MoveSong() {
-	switch runtime.GOOS {
-	case "linux", "darwin":
-		del := exec.Command("sh", "-c", "mv *.mp3 music")
-		//fmt.Println("all mp3 files moved to the music folder")
-		delError := del.Run()
-		if delError != nil {
-			fmt.Println(delError)
-		}
-	case "windows":
-		del := exec.Command(`cmd`, `/C`, "move *.mp3 music")
-		//fmt.Println("all mp3 files moved to the music folder")
-		delError := del.Run()
-		if delError != nil {
-			fmt.Println(delError)
-		}
-	default:
-		fmt.Println("unknown OS")
-	}
-}
-
-func DeleteSong(song int) error {
-	files, err := ioutil.ReadDir("music")
-	if err != nil {
-		fmt.Println(err)
-	}
-	os.Remove("music/" + files[song].Name())
-	return nil
-}
 
 func PlaySongOneByOne(song int) error {
 	files, err := ioutil.ReadDir("music")

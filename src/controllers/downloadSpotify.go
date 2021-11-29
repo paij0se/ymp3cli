@@ -1,4 +1,4 @@
-package server
+package controllers
 
 import (
 	"bytes"
@@ -12,6 +12,7 @@ import (
 
 	noansi "github.com/ELPanaJose/api-deno-compiler/src/routes/others"
 	"github.com/labstack/echo"
+	utils "github.com/paij0se/ymp3cli/src/utils"
 )
 
 func SpotifyDownloader(c echo.Context) error {
@@ -58,7 +59,7 @@ func SpotifyDownloader(c echo.Context) error {
 			c.Response().WriteHeader(http.StatusCreated)
 			json.NewEncoder(c.Response()).Encode(map[string]string{"url": url, "output": output, "status": "success"})
 			// move the mp3 files
-			MoveSong()
+			utils.MoveSong()
 
 		}
 		return nil
@@ -102,7 +103,7 @@ func SpotifyDownloader(c echo.Context) error {
 			c.Response().WriteHeader(http.StatusCreated)
 			json.NewEncoder(c.Response()).Encode(map[string]string{"url": url, "output": output, "status": "success"})
 			// move the mp3 files
-			MoveSong()
+			utils.MoveSong()
 
 		}
 		return nil

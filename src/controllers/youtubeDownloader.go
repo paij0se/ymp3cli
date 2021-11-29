@@ -1,4 +1,4 @@
-package server
+package controllers
 
 import (
 	"bytes"
@@ -12,64 +12,10 @@ import (
 
 	noansi "github.com/ELPanaJose/api-deno-compiler/src/routes/others"
 	"github.com/labstack/echo"
+	utils "github.com/paij0se/ymp3cli/src/utils"
 )
 
-func DeleteRequest(c echo.Context) error {
-	var d delete
-	reqBody, err := ioutil.ReadAll(c.Request().Body)
-	if err != nil {
-		fmt.Fprintf(c.Response(), "Error")
-	}
-	json.Unmarshal(reqBody, &d)
-
-	files, err := ioutil.ReadDir("music")
-	if err != nil {
-		fmt.Println(err)
-	}
-	// if the files is out of range, return error
-	if d.Delete > len(files) {
-		c.Response().Header().Set("Content-Type", "application/json")
-		c.Response().WriteHeader(http.StatusCreated)
-		json.NewEncoder(c.Response()).Encode(map[string]string{"error": "out of range"})
-		return nil
-	} else {
-		// delete the song and send the response
-		json.NewEncoder(c.Response()).Encode(map[string]string{"song_deleted": files[d.Delete].Name()})
-		DeleteSong(d.Delete)
-		return nil
-	}
-
-}
-
-func AskForPlayTheSong(c echo.Context) error {
-	var n nsong
-	reqBody, err := ioutil.ReadAll(c.Request().Body)
-	if err != nil {
-		fmt.Fprintf(c.Response(), "Error")
-	}
-	json.Unmarshal(reqBody, &n)
-
-	//fmt.Println(n.Nsong)
-	files, err := ioutil.ReadDir("music")
-	if err != nil {
-		fmt.Println(err)
-	}
-	// if the files is out of range, return error
-	if n.Nsong > len(files) {
-		c.Response().Header().Set("Content-Type", "application/json")
-		c.Response().WriteHeader(http.StatusCreated)
-		json.NewEncoder(c.Response()).Encode(map[string]string{"error": "out of range"})
-		return nil
-	} else {
-		// play the song and send the response
-		json.NewEncoder(c.Response()).Encode(map[string]string{"song_played": files[n.Nsong].Name()})
-		PlaySongOneByOne(n.Nsong)
-		return nil
-	}
-
-}
-
-func DownloadSong(c echo.Context) error {
+func DownloadSongYt(c echo.Context) error {
 	switch runtime.GOOS {
 	case "linux", "darwin":
 		var inputUrl url
@@ -115,7 +61,7 @@ func DownloadSong(c echo.Context) error {
 			c.Response().WriteHeader(http.StatusCreated)
 			json.NewEncoder(c.Response()).Encode(map[string]string{"video_downloaded": url, "output": output, "status": "success"})
 			// move the mp3 files
-			MoveSong()
+			utils.MoveSong()
 
 		}
 		return nil
@@ -159,7 +105,7 @@ func DownloadSong(c echo.Context) error {
 			c.Response().WriteHeader(http.StatusCreated)
 			json.NewEncoder(c.Response()).Encode(map[string]string{"video_downloaded": url, "output": output, "status": "success"})
 			// move the mp3 files
-			MoveSong()
+			utils.MoveSong()
 
 		}
 		return nil

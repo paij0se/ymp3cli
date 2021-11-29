@@ -1,4 +1,4 @@
-package core
+package router
 
 import (
 	"encoding/json"
@@ -9,10 +9,10 @@ import (
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
-	server "github.com/paij0se/ymp3cli/src/server"
+	controllers "github.com/paij0se/ymp3cli/src/controllers"
 )
 
-func Core() {
+func SetUpRoutes() {
 	e := echo.New()
 	//e.Use(middleware.Logger())
 	// Middlewares
@@ -24,10 +24,10 @@ func Core() {
 
 		return nil
 	})
-	e.POST("/download", server.DownloadSong)
-	e.POST("/spotify", server.SpotifyDownloader)
-	e.POST("/y", server.AskForPlayTheSong)
-	// Show the songs / music stored in the folder.
+	e.POST("/download", controllers.DownloadSongYt)
+	e.POST("/spotify", controllers.SpotifyDownloader)
+	e.POST("/y", controllers.AskForPlayTheSong)
+	// Show the avaliable songs in the music directory.
 	e.GET("/songs", func(c echo.Context) error {
 		files, err := ioutil.ReadDir("music")
 
@@ -43,7 +43,7 @@ func Core() {
 
 		return nil
 	})
-	e.DELETE("/delete", server.DeleteRequest)
+	e.DELETE("/delete", controllers.DeleteRequest)
 
 	e.Logger.Fatal(e.Start(":8000"))
 }

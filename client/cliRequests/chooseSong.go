@@ -1,4 +1,4 @@
-package cli
+package cliRequests
 
 import (
 	"bytes"
@@ -9,8 +9,10 @@ import (
 	"net/http"
 )
 
-func DownloadRequest(url string) {
-	postBody := map[string]string{"url": url}
+func ChooseSong(song int) {
+	//Encode the data
+	// the post body is just a int value
+	postBody := map[string]int{"nsong": song}
 	// convert podBody to json
 	jsonBody, err := json.Marshal(postBody)
 	if err != nil {
@@ -18,7 +20,7 @@ func DownloadRequest(url string) {
 	}
 	responseBody := bytes.NewBuffer(jsonBody)
 	//Leverage Go's HTTP Post function to make request
-	resp, err := http.Post("http://127.0.0.1:8000/download", "application/json", responseBody)
+	resp, err := http.Post("http://127.0.0.1:8000/y", "application/json", responseBody)
 	//Handle Error
 	if err != nil {
 		log.Fatalf("An Error Occured %v", err)
@@ -29,6 +31,7 @@ func DownloadRequest(url string) {
 	if err != nil {
 		log.Fatalln(err)
 	}
+	sb := string(body)
 	// print sb in green color
-	fmt.Printf("\x1b[32m%s\x1b[0m\n", string(body))
+	fmt.Printf("\x1b[32m%s\x1b[0m\n", sb)
 }
