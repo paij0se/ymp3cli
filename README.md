@@ -8,6 +8,7 @@
 - youtube-dl https://github.com/ytdl-org/youtube-dl/releases/tag/2021.06.06
 - python 3.6.1 or above (for youtubedl and spotdl)
 - ffmpeg 4.2 or above (added to PATH)
+- spotDL https://github.com/spotDL/spotify-downloader#installation
 
 > **_YouTube Music must be available in your country for spotDL to work. This is because we use YouTube Music to filter search results. You can check if YouTube Music is available in your country, by visiting [YouTube Music](https://music.youtube.com)._**
 
