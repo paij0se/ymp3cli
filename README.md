@@ -21,6 +21,10 @@
 
 <h1>Install instructions</h1>
 
+- you can download the binary file from:  https://github.com/paij0se/ymp3cli/releases/tag/v0.0.5
+
+<h1>Build instructions</h1>
+
 - linux and macOS
 
 for linux install the oto dependencies `sudo apt install libasound2-dev`,
