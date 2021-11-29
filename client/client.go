@@ -65,7 +65,7 @@ func Clientmain() {
 		}
 		// print the content of the text file
 		fmt.Println(string(data))
-		fmt.Printf("version 0.0.4\nType <ctrl + c> to exit.\n")
+		fmt.Printf("version 0.0.5\nType <ctrl + c> to exit.\n")
 		fmt.Println("Avaliable songs:")
 		// get the songs
 		cli.GetSongs()
