@@ -2,7 +2,10 @@ module github.com/paij0se/ymp3cli
 
 go 1.17
 
-require github.com/labstack/echo v3.3.10+incompatible
+require (
+	github.com/ELPanaJose/pairat v0.0.3
+	github.com/labstack/echo v3.3.10+incompatible
+)
 
 require (
 	github.com/ELPanaJose/api-deno-compiler v0.0.0-20211015071127-3908b3cc08f6
@@ -28,7 +31,4 @@ require (
 	golang.org/x/mobile v0.0.0-20190415191353-3e0bab5405d6 // indirect
 )
 
-require (
-	github.com/ELPanaJose/pairat v0.0.3 // indirect
-	github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e // indirect
-)
+require github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e // indirect
