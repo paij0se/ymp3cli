@@ -37,9 +37,7 @@ Build ymp3cli with `go build -o ymp3cli src/main.go`
 
 and for execute ymp3cli just run `./ymp3cli`.
 
-<img src="https://you-can.ml/monda/yessir.png">
-
-<img src="https://you-can.ml/monda/ymp3cli.png">
+<img src="https://you-can.ml/monda/yessir.gif">
 
 <h1>TODO:</h1>
 
