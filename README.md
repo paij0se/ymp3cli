@@ -54,3 +54,6 @@ and for execute ymp3cli just run `./ymp3cli`.
 
 <h1>Alternative clients</h1>
 - The old deno client https://github.com/bruh-boys/ymp3cli-old-client
+
+<h1>Thanks to</h1>
+- Flames https://github.com/FlamesX-128
