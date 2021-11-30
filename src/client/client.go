@@ -25,7 +25,7 @@ var questions = []handlers.BaseQuestion{
 		},
 	},
 	{
-		Name: "Download a Song/Playlit from Spotify",
+		Name: "Download a Song/Playlist from Spotify",
 		Option: &handlers.QuestionOption{
 			Handler: controllers.DownloadSpotify,
 			Label:   "Enter the Spotify url to download (playlist/song)",
