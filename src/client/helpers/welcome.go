@@ -28,8 +28,7 @@ func Welcome() {
 	}
 
 	fmt.Println(string(data))
-	fmt.Printf("Version 0.0.5\n\n")
-
-	fmt.Println("Type 'help' to see the list of commands.")
+	fmt.Printf("\nwelcome to ymp3cli!\n\n")
+	fmt.Printf("Version 0.0.6\n\n")
 	fmt.Printf("\nType <ctrl + c> to exit.\n\n")
 }

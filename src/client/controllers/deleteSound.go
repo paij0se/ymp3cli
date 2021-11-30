@@ -3,6 +3,8 @@ package controllers
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"strconv"
@@ -43,4 +45,11 @@ func DeleteSound(url string, sound string) {
 	}
 
 	defer resp.Body.Close()
+	res, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	// print the response of the server
+	fmt.Println(string(res))
+
 }

@@ -22,7 +22,6 @@ func main() {
 		log.Panicln(err)
 
 	}
-
 	go client.StartClient(fmt.Sprintf(":%d", port))
 	server.StartServer(fmt.Sprintf(":%d", port))
 }
