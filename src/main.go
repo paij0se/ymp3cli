@@ -1,22 +1,28 @@
 package main
 
 import (
+	"fmt"
+	"log"
 	"os"
-	"time"
 
-	client "github.com/paij0se/ymp3cli/client"
-	router "github.com/paij0se/ymp3cli/src/router"
+	"github.com/paij0se/ymp3cli/src/client"
+	"github.com/paij0se/ymp3cli/src/server"
+	"github.com/phayes/freeport"
 )
 
 func main() {
-	// create the folder music if doesent exists
 	if _, err := os.Stat("music"); os.IsNotExist(err) {
 		os.Mkdir("music", 0777)
-	}
-	// execute the client in a go routine
-	go client.Clientmain()
-	// execute the router, then wait 2 seconds 🍦
-	router.SetUpRoutes()
-	time.Sleep(2 * time.Second)
 
+	}
+
+	port, err := freeport.GetFreePort()
+
+	if err != nil {
+		log.Panicln(err)
+
+	}
+
+	go client.StartClient(fmt.Sprintf(":%d", port))
+	server.StartServer(fmt.Sprintf(":%d", port))
 }
