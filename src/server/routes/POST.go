@@ -9,4 +9,5 @@ func Post(e *echo.Echo) {
 	e.POST("/download", POST.Download)
 	e.POST("/spotify", POST.Spotify)
 	e.POST("/y", POST.Y)
+	e.POST("/y/all", POST.PlayAllSongsReq)
 }

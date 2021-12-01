@@ -14,10 +14,10 @@ import (
 
 var questions = []handlers.BaseQuestion{
 	{
-		Name: "Download a song from Youtube",
+		Name: "Download a Song from Youtube🔴",
 		Option: &handlers.QuestionOption{
 			Handler: controllers.DownloadSound,
-			Label:   "Enter the Youtube URL of the video to download",
+			Label:   "Enter the Youtube URL of the video to download🔴",
 			Options: func(url string) []string {
 				return []string{}
 			},
@@ -25,10 +25,10 @@ var questions = []handlers.BaseQuestion{
 		},
 	},
 	{
-		Name: "Download a Song/Playlist from Spotify",
+		Name: "Download a Song/Playlist from Spotify🥗",
 		Option: &handlers.QuestionOption{
 			Handler: controllers.DownloadSpotify,
-			Label:   "Enter the Spotify url to download (playlist/song)",
+			Label:   "Enter the Spotify url to download (playlist/song)🥗",
 			Options: func(url string) []string {
 				return []string{}
 			},
@@ -36,19 +36,28 @@ var questions = []handlers.BaseQuestion{
 		},
 	},
 	{
-		Name: "Listen a song",
+		Name: "Suffle the Playlist🔄",
 		Option: &handlers.QuestionOption{
-			Handler:   controllers.PlaySound,
-			Label:     "Enter a number to play the song",
+			Handler:   controllers.PlaySoundAll,
+			Label:     "Enter any key to shuffle the Playlist🔄",
 			Options:   controllers.GetSongs,
 			Validator: validators.Number,
 		},
 	},
 	{
-		Name: "Delete a song",
+		Name: "Listen a single Song🎵",
+		Option: &handlers.QuestionOption{
+			Handler:   controllers.PlaySound,
+			Label:     "Enter a number to play the Song🎵",
+			Options:   controllers.GetSongs,
+			Validator: validators.Number,
+		},
+	},
+	{
+		Name: "Delete a song🔻",
 		Option: &handlers.QuestionOption{
 			Handler:   controllers.DeleteSound,
-			Label:     "Enter a number to delete song",
+			Label:     "Enter a number to delete Song🔻",
 			Options:   controllers.GetSongs,
 			Validator: validators.Number,
 		},
