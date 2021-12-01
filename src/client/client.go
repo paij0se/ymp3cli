@@ -39,7 +39,7 @@ var questions = []handlers.BaseQuestion{
 		Name: "Suffle the Playlist🔄",
 		Option: &handlers.QuestionOption{
 			Handler:   controllers.PlaySoundAll,
-			Label:     "Enter any key to shuffle the Playlist🔄",
+			Label:     "Enter any number to shuffle the Playlist🔄",
 			Options:   controllers.GetSongs,
 			Validator: validators.Number,
 		},
