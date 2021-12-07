@@ -3,6 +3,8 @@ package controllers
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 )
@@ -27,12 +29,11 @@ func DownloadSound(url string, sound string) {
 	}
 
 	defer resp.Body.Close()
-	/*
-		body, err := ioutil.ReadAll(resp.Body)
-		if err != nil {
-			log.Fatalln(err)
-		}
-	*/
-	// print the the response of the server
-	//fmt.Println(string(body))
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	fmt.Println(string(body))
 }

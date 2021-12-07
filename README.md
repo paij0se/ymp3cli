@@ -4,8 +4,7 @@
 
 <h1>Prerequisites</h1>
 
-- golang
-- youtube-dl https://github.com/ytdl-org/youtube-dl/releases/tag/2021.06.06
+- golang 1.17+
 - python 3.6.1 or above (for youtubedl and spotdl)
 - ffmpeg 4.2 or above (added to PATH)
 - spotDL https://github.com/spotDL/spotify-downloader#installation
@@ -42,8 +41,8 @@ and for execute ymp3cli just run `./ymp3cli`.
 <h1>TODO:</h1>
 
 - [x] client in golang
-- [ ] download the videos without youtube-dl
-- [ ] works correctly in windows (Not tested yet)❓
+- [x] download the videos without youtube-dl
+- [x] works correctly in windows (Not tested yet)❓
 - [ ] able to pause and rewind the songs
 - [x] able to play a song one by one
 
