@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os/exec"
 
 	"github.com/labstack/echo"
 	lmmp3 "github.com/paij0se/lmmp3"
@@ -34,7 +35,11 @@ func Download(c echo.Context) error {
 		c.Response().WriteHeader(http.StatusCreated)
 		json.NewEncoder(c.Response()).Encode(map[string]string{"video_downloaded": url})
 		lmmp3.DownloadAndConvert(url) // download and convert the video
-		tools.MoveSong()              // move the song to the music folder
+		del := exec.Command("cmd", "/C", "del", "*.mpeg")
+		if del.Run() != nil {
+			panic("failed to delete files")
+		}
+		tools.MoveSong() // move the song to the music folder
 	}
 	return nil
 
