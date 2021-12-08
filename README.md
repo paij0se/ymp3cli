@@ -5,7 +5,7 @@
 <h1>Prerequisites</h1>
 
 - golang 1.17+
-- python 3.6.1 or above (for youtubedl and spotdl)
+- python 3.6.1 or above (for spotdl)
 - ffmpeg 4.2 or above (added to PATH)
 - spotDL https://github.com/spotDL/spotify-downloader#installation
 
