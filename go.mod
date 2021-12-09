@@ -6,7 +6,7 @@ require (
 	github.com/ELPanaJose/pairat v0.0.3
 	github.com/faiface/beep v1.1.0
 	github.com/labstack/echo v3.3.10+incompatible
-	github.com/paij0se/lmmp3 v0.0.2
+	github.com/paij0se/lmmp3 v0.0.3
 )
 
 require (
