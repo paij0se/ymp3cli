@@ -21,7 +21,9 @@
 
 <h1>Install instructions</h1>
 
-- you can download the binary file from:  https://github.com/paij0se/ymp3cli/releases/tag/v0.0.5
+- You can download the binary file from:  https://github.com/paij0se/ymp3cli/releases
+
+- Or installed from source with `curl https://raw.githubusercontent.com/paij0se/ymp3cli/main/install.sh | bash`
 
 <h1>Build instructions</h1>
 
