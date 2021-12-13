@@ -26,9 +26,15 @@ curl https://raw.githubusercontent.com/paij0se/ymp3cli/main/install.sh | bash
 ```bash
 $ ymp3cli --h
 
-  --h: Display the help command
-  --v: Display the versions
-
+ Usage: ymp3cli --[OPTION]
+ --h,--help: Display the help command
+ --v,--version: Display the version of ymp3cli
+ Usage: ymp3cli [SONG]
+ ymp3cli <song.mp3>: play a single song
+ example: ymp3cli music/song.mp3
+    MIT License
+    Made it by pai
+    https://paijose.cf
   
 
 $ ymp3cli # start ymp3cli

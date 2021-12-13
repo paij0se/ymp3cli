@@ -20,6 +20,6 @@ func Welcome() {
 	`
 	fmt.Println(ymp3cli)
 	fmt.Printf("\nwelcome to ymp3cli!\n\n")
-	fmt.Printf("Version 0.0.9\n")
+	fmt.Printf("Version 0.0.10\n")
 	fmt.Printf("\nType <ctrl + c> to exit.\n\n")
 }
