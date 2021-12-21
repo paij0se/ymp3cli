@@ -7,3 +7,5 @@ go.sum
 .spotdl-cache
 main
 ymp3cli
+*.mp3
+*.exe
