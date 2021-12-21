@@ -22,7 +22,7 @@
 curl https://raw.githubusercontent.com/paij0se/ymp3cli/main/install.sh | bash
 ```
 
-- verify the installation with 
+- verify the installation with
 ```bash
 $ ymp3cli --h
 
@@ -41,11 +41,11 @@ $ ymp3cli --h
 	 MIT License
 	 Made it by pai
 	 https://paijose.cf
-  
+
 
 $ ymp3cli # start ymp3cli
 
-$ ymp3cli https://www.youtube.com/watch?v=dQw4w9WgXcQ # download a song from youtube 
+$ ymp3cli https://www.youtube.com/watch?v=dQw4w9WgXcQ # download a song from youtube
 
 $ ymp3cli song.mp3 # play a single song
 
@@ -53,7 +53,7 @@ $ ymp3cli song.mp3 # play a single song
 
 <h1>Build instructions</h1>
 
-for linux install the oto dependencies 
+for linux install the oto dependencies
 
 ```bash
 sudo apt install libasound2-dev
@@ -66,13 +66,22 @@ Build ymp3cli with `go build -o ymp3cli src/main.go`
 
 and for execute ymp3cli just run `./ymp3cli`.
 
-<img src="https://you-can.ml/monda/yessir.gif">
+
+<div align=center>
+
+<img src="https://you-can.ml/monda/yessir.gif"/>
+
+<h1>Discord RPC</h1>
+
+<img src="https://cdn.discordapp.com/attachments/786759600245309460/922690903750086796/Screenshot_from_2021-12-20_22-23-45.png"/>
+</div>
 
 <h1>TODO:</h1>
 
 - [x] client in golang
 - [x] download the videos without youtube-dl
 - [x] works correctly in windows
+- [x] Discord rpc
 - [ ] able to pause and rewind the songs
 - [ ] A playlists system
 - [x] able to play a song one by one
