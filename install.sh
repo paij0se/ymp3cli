@@ -1,4 +1,5 @@
 #!/bin/bash
+rm -rf ymp3cli
 git clone https://github.com/paij0se/ymp3cli
 cd ymp3cli
 echo downloading dependencies
