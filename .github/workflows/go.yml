@@ -19,7 +19,7 @@ jobs:
         go-version: 1.17
 
     - name: Deps
-      run: go get github.com/paij0se/lmmp3
+      run: cd src ; go get .
 
     - name: Test
-      run: go test src/main_test.go
+      run: go version
