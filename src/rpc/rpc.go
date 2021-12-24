@@ -1,107 +1,70 @@
 package rpc
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
 	"time"
 
 	"github.com/hugolgst/rich-go/client"
 )
 
-func RpcListening(songName string) {
-	err := client.Login("851297648111517697")
-	if err != nil {
-		fmt.Println("No discord detected")
-	}
-
-	now := time.Now()
-	err = client.SetActivity(client.Activity{
-		State:      "🎵🖥️",
-		Details:    "Listening " + songName,
-		LargeImage: "logo",
-		LargeText:  "🙏",
-		SmallImage: "wallpaperbetter_com_1366x768",
-		SmallText:  "yessir",
-		Timestamps: &client.Timestamps{
-			Start: &now,
-		},
-		Buttons: []*client.Button{
-			&client.Button{
-				Label: "GitHub",
-				Url:   "https://github.com/paij0se/ymp3cli",
-			},
-		},
-	})
-
-	if err != nil {
-		fmt.Println("Error in rpc")
-	}
-	time.Sleep(time.Second * 10)
-	fmt.Println("")
+type Respose struct {
+	Message string
 }
 
-func YtRpc(url string) {
+func DefaultRpc(port int) {
 	err := client.Login("851297648111517697")
 	if err != nil {
 		fmt.Println("No discord detected")
 	}
+	for {
+		time.Sleep(time.Second * 1)
 
-	now := time.Now()
-	err = client.SetActivity(client.Activity{
-		State:      "🎵🖥️",
-		Details:    "Downloading... " + url,
-		LargeImage: "logo",
-		LargeText:  "🙏",
-		SmallImage: "wallpaperbetter_com_1366x768",
-		SmallText:  "yessir",
-		Timestamps: &client.Timestamps{
-			Start: &now,
-		},
-		Buttons: []*client.Button{
-			&client.Button{
-				Label: "GitHub",
-				Url:   "https://github.com/paij0se/ymp3cli",
+		url := "http://localhost:" + fmt.Sprintf("%d", port) + "/currentSong"
+		resp, err := http.Get(url)
+
+		if err != nil {
+			log.Fatalln(err)
+
+		}
+
+		body, err := ioutil.ReadAll(resp.Body)
+
+		if err != nil {
+			log.Fatalln(err)
+
+		}
+
+		r := string(body)
+		song := "Listening " + r
+		var res Respose
+		json.Unmarshal([]byte(r), &res)
+		if res.Message == "Not Found" { // {"message":"Not Found"}
+			song = "Listening Nothing💀"
+		}
+		err = client.SetActivity(client.Activity{
+			State:      "🎵🖥️",
+			Details:    song,
+			LargeImage: "skull",
+			LargeText:  "🙏",
+			SmallImage: "wallpaperbetter_com_1366x768",
+			SmallText:  "yessir",
+			Buttons: []*client.Button{
+				&client.Button{
+					Label: "GitHub",
+					Url:   "https://github.com/paij0se/ymp3cli",
+				},
 			},
-		},
-	})
+		})
 
-	if err != nil {
-		fmt.Println("Error in rpc")
+		if err != nil {
+			fmt.Println("Error in rpc")
+		}
+		fmt.Print("")
+
 	}
 
-	time.Sleep(time.Second * 10)
-	fmt.Println("")
-
-}
-
-func DefaultRpc() {
-	err := client.Login("851297648111517697")
-	if err != nil {
-		fmt.Println("No discord detected")
-	}
-
-	now := time.Now()
-	err = client.SetActivity(client.Activity{
-		State:      "🎵🖥️",
-		Details:    "Listening music in the terminal",
-		LargeImage: "logo",
-		LargeText:  "🙏",
-		SmallImage: "wallpaperbetter_com_1366x768",
-		SmallText:  "yessir",
-		Timestamps: &client.Timestamps{
-			Start: &now,
-		},
-		Buttons: []*client.Button{
-			&client.Button{
-				Label: "GitHub",
-				Url:   "https://github.com/paij0se/ymp3cli",
-			},
-		},
-	})
-
-	if err != nil {
-		fmt.Println("Error in rpc")
-	}
-
-	time.Sleep(time.Second * 10)
-	fmt.Println("")
 }

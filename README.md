@@ -73,7 +73,7 @@ and for execute ymp3cli just run `./ymp3cli`.
 
 <h1>Discord RPC</h1>
 
-<img src="https://cdn.discordapp.com/attachments/786759600245309460/922690903750086796/Screenshot_from_2021-12-20_22-23-45.png"/>
+<img src="https://media.discordapp.net/attachments/786759600245309460/923773844135747594/unknown.png?width=248&height=430"/>
 </div>
 
 <h1>TODO:</h1>

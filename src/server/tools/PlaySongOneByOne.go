@@ -4,13 +4,15 @@ import (
 	"io"
 	"io/ioutil"
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/hajimehoshi/go-mp3"
 	"github.com/hajimehoshi/oto"
+	"github.com/labstack/echo"
 )
 
-func PlaySongOneByOne(song uint32) error {
+func PlaySongOneByOne(song uint32, e *echo.Echo) error {
 	files, err := ioutil.ReadDir("music")
 
 	if err != nil {
@@ -25,6 +27,9 @@ func PlaySongOneByOne(song uint32) error {
 	}
 
 	file, err := os.Open("music/" + files[song].Name())
+	e.GET("/currentSong", func(c echo.Context) error {
+		return c.String(http.StatusOK, files[song].Name()[:len(files[song].Name())-4])
+	})
 
 	if err != nil {
 		log.Println(err)

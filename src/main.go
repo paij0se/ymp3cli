@@ -16,7 +16,7 @@ import (
 )
 
 var (
-	Version = "0.0.12"
+	version = "0.0.13"
 )
 
 func startServer() {
@@ -26,6 +26,7 @@ func startServer() {
 		log.Panicln(err)
 
 	}
+	go rpc.DefaultRpc(port)
 	go client.StartClient(fmt.Sprintf(":%d", port))
 	server.StartServer(fmt.Sprintf(":%d", port))
 }
@@ -38,17 +39,14 @@ func main() {
 	}
 	switch {
 	case len(os.Args) != 2: // if the input is empty
-		go rpc.DefaultRpc()
 		startServer()
 	case os.Args[1] == "--h" || os.Args[1] == "--help":
 		cli.HelpCommand()
 	case os.Args[1] == "--v" || os.Args[1] == "--version":
-		fmt.Println(Version)
+		fmt.Println(version)
 	case os.Args[1][len(os.Args[1])-4:] == ".mp3":
-		go rpc.RpcListening(os.Args[1]) // if the input is a mp3 file
 		cli.PlaySongCli(os.Args[1])
 	case os.Args[1][:4] == "http": // if the input is a youtube Url
-		go rpc.YtRpc(os.Args[1])
 		lmmp3.DownloadAndConvert(os.Args[1])
 		if runtime.GOOS == "windows" {
 			del := exec.Command("cmd", "/C", "del", "*.mpeg")
@@ -57,7 +55,6 @@ func main() {
 			}
 		}
 	default:
-		go rpc.DefaultRpc()
 		startServer()
 	}
 }

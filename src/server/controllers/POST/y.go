@@ -43,7 +43,7 @@ func Y(c echo.Context) error {
 
 	json.NewEncoder(c.Response()).Encode(map[string]string{"song_played": files[n.Nsong].Name()})
 
-	tools.PlaySongOneByOne(uint32(n.Nsong))
+	tools.PlaySongOneByOne(uint32(n.Nsong), c.Echo())
 
 	return nil
 }

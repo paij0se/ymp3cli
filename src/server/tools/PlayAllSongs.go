@@ -4,15 +4,17 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"net/http"
 	"os"
 	"time"
 
 	"github.com/faiface/beep"
 	"github.com/faiface/beep/mp3"
 	"github.com/faiface/beep/speaker"
+	"github.com/labstack/echo"
 )
 
-func PlayAllSongs() {
+func PlayAllSongs(e *echo.Echo) error {
 	files, err := ioutil.ReadDir("music")
 	if err != nil {
 		log.Fatal(err)
@@ -27,6 +29,9 @@ func PlayAllSongs() {
 			log.Fatal(err)
 		}
 		fmt.Println("Playing:", file.Name())
+		e.GET("/currentSong", func(c echo.Context) error {
+			return c.String(http.StatusOK, file.Name()[:len(file.Name())-4])
+		})
 		streamer, format, err := mp3.Decode(f)
 		if err != nil {
 			log.Fatal(err)
@@ -39,4 +44,5 @@ func PlayAllSongs() {
 		})))
 		<-done
 	}
+	return nil
 }
