@@ -1,4 +1,16 @@
 <h1>A simple tool to download music from youtube/spotify and listen in the terminal.</h1>
+<p>consumes <10MB of ram!!!</p>
+<div align=center>
+
+<img src="https://media.discordapp.net/attachments/786759600245309460/923782488927641670/unknown.png?width=572&height=457"/>
+
+<h1>Discord RPC</h1>
+
+<img src="https://media.discordapp.net/attachments/786759600245309460/923773844135747594/unknown.png?width=248&height=430"/>
+</div>
+
+<h1>Why???</h1>
+
 
 <h1>Prerequisites</h1>
 
@@ -65,16 +77,6 @@ run `go get .` to install the dependencies.
 Build ymp3cli with `go build -o ymp3cli src/main.go`
 
 and for execute ymp3cli just run `./ymp3cli`.
-
-
-<div align=center>
-
-<img src="https://you-can.ml/monda/yessir.gif"/>
-
-<h1>Discord RPC</h1>
-
-<img src="https://media.discordapp.net/attachments/786759600245309460/923773844135747594/unknown.png?width=248&height=430"/>
-</div>
 
 <h1>TODO:</h1>
 
