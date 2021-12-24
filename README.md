@@ -10,7 +10,7 @@
 </div>
 
 <h1>Why???</h1>
-
+idk, is free.
 
 <h1>Prerequisites</h1>
 
