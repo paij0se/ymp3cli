@@ -38,21 +38,25 @@ curl https://raw.githubusercontent.com/paij0se/ymp3cli/main/install.sh | bash
 ```bash
 $ ymp3cli --h
 
-  Usage: ymp3cli --[OPTION]
-  --h,--help: Display the help command
-  --v,--version: Display the version of ymp3cli
+ 
+  Usage: ymp3cli -[OPTION]
+  -h ,-help: Display the help command
+  -v ,-version: Display the version of ymp3cli
+  -p ,-play: Play a single song
+  -d ,-download ,-download: Download a song from youtube
+  -port: Port to run the server on
 
-  Usage: ymp3cli [SONG]
-  ymp3cli <song.mp3>: play a single song
-  example: ymp3cli music/song.mp3
+  Usage: ymp3cli -p [SONG]
+  ymp3cli -p <song.mp3>: play a single song
+  example: ymp3cli -p song.mp3
 
-  Usage: ymp3cli [Link]
-  ymp3cli <link>: download a song from youtube
-  example: ymp3cli https://www.youtube.com/watch?v=dQw4w9WgXcQ
+  Usage: ymp3cli -d [Link]
+  ymp3cli -d <link>: download a song from youtube
+  example: ymp3cli -d https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
-	 MIT License
-	 Made it by pai
-	 https://paijose.cf
+         MIT License
+         Made it by pai
+         https://paijose.cf
 
 
 $ ymp3cli # start ymp3cli

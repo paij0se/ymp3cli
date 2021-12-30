@@ -16,7 +16,7 @@ import (
 )
 
 var (
-	version     = "0.0.14"
+	version     = "0.2.0"
 	help        bool
 	showVersion bool
 	url         string
@@ -63,9 +63,9 @@ func main() {
 
 	}
 	if url != "" {
-		lmmp3.DownloadAndConvert(os.Args[1])
+		lmmp3.DownloadAndConvert(os.Args[2])
 		if runtime.GOOS == "windows" {
-			del := exec.Command("del", "*.mpeg")
+			del := exec.Command(`cmd`, `/C`, "del", "*.mpeg")
 			if del.Run() != nil {
 				fmt.Println("Error deleting the mpeg files")
 			}

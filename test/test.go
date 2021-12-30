@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"strings"
 )
@@ -49,4 +50,10 @@ func requestYoutube() (err error) {
 	}
 
 	return
+}
+
+func main() {
+	log.Println(requestSpotify())
+	log.Println(requestYoutube())
+
 }

@@ -3,9 +3,11 @@ package POST
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os/exec"
+	"runtime"
 	"strings"
 
 	noansi "github.com/ELPanaJose/api-deno-compiler/src/routes/others"
@@ -26,17 +28,30 @@ func Spotify(c echo.Context) (err error) {
 
 	if tools.ErrControl(c, "spotify", url, tools.S) {
 
-		cmd := exec.Command("python3", "-m", "spotdl", url)
+		switch runtime.GOOS {
+		case "linux", "darwin":
+			cmd := exec.Command("sh", "-c", "spotdl "+url)
+			cmd.Stdout = &stdout
+			cmd.Stderr = &stderr
+			if err = cmd.Run(); err != nil {
+				log.Println(err)
+				stderr.Write([]byte(err.Error()))
 
-		cmd.Stdout = &stdout
-		cmd.Stderr = &stderr
+			}
 
-		if err = cmd.Run(); err != nil {
-			log.Println(err)
-			stderr.Write([]byte(err.Error()))
+		case "windows":
+			cmd := exec.Command("cmd", "/c", ("spotdl " + url))
+			cmd.Stdout = &stdout
+			cmd.Stderr = &stderr
+			if err = cmd.Run(); err != nil {
+				log.Println(err)
+				stderr.Write([]byte(err.Error()))
 
+			}
+
+		default:
+			fmt.Println("Your OS is not supported")
 		}
-
 		executedOut := stdout.String() + stderr.String()
 		output := strings.ReplaceAll(executedOut, "sh: 1: kill: No such process", "")
 		out := noansi.NoAnsi(output)

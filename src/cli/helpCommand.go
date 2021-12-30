@@ -11,9 +11,9 @@ func HelpCommand() {
   -d ,-download ,-download: Download a song from youtube
   -port: Port to run the server on
 
-  Usage: ymp3cli [SONG]
-  ymp3cli <song.mp3>: play a single song
-  example: ymp3cli music/song.mp3
+  Usage: ymp3cli -p [SONG]
+  ymp3cli -p <song.mp3>: play a single song
+  example: ymp3cli -p song.mp3
  
   Usage: ymp3cli -d [Link]
   ymp3cli -d <link>: download a song from youtube
