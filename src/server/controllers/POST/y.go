@@ -2,7 +2,6 @@ package POST
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -14,23 +13,13 @@ import (
 func Y(c echo.Context) error {
 	var n tools.Nsong
 
-	reqBody, err := ioutil.ReadAll(c.Request().Body)
-
-	if err != nil {
-		fmt.Fprintf(c.Response(), "Error")
-
-	}
-
-	json.Unmarshal(reqBody, &n)
-
 	files, err := ioutil.ReadDir("music")
-
 	if err != nil {
 		log.Println(err)
 
 	}
 
-	json.Unmarshal(reqBody, &n)
+	json.NewDecoder(c.Request().Body).Decode(&n)
 
 	if n.Nsong > len(files) {
 		c.Response().WriteHeader(http.StatusBadRequest)

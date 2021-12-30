@@ -3,12 +3,9 @@ package POST
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os/exec"
-	"runtime"
 	"strings"
 
 	noansi "github.com/ELPanaJose/api-deno-compiler/src/routes/others"
@@ -16,116 +13,39 @@ import (
 	"github.com/paij0se/ymp3cli/src/server/tools"
 )
 
-func Spotify(c echo.Context) error {
-	switch runtime.GOOS {
-	case "darwin", "linux":
-		var inputUrl tools.Url
+//this functions works for check any kind of error of the client
 
-		reqBody, err := ioutil.ReadAll(c.Request().Body)
+func Spotify(c echo.Context) (err error) {
+	var stdout, stderr bytes.Buffer
+	var inputUrl tools.Url
+	c.Response().WriteHeader(http.StatusCreated)
 
-		if err != nil {
-			fmt.Fprintf(c.Response(), "Error")
+	err = json.NewDecoder(c.Request().Body).Decode(&inputUrl)
 
-		}
+	url := inputUrl.Url
 
-		json.Unmarshal(reqBody, &inputUrl)
-		url := inputUrl.Url
+	if tools.ErrControl(c, "spotify", url, tools.S) {
 
-		if url == "" {
-			c.Response().Header().Set("Content-Type", "application/json")
-			c.Response().WriteHeader(http.StatusCreated)
+		cmd := exec.Command("python3", "-m", "spotdl", url)
 
-			json.NewEncoder(c.Response()).Encode(map[string]string{"error": "empty url!"})
+		cmd.Stdout = &stdout
+		cmd.Stderr = &stderr
 
-		} else if !tools.S.MatchString(url) {
-			c.Response().Header().Set("Content-Type", "application/json")
-			c.Response().WriteHeader(http.StatusCreated)
-
-			json.NewEncoder(c.Response()).Encode(map[string]string{"error": "not a spotify url!"})
-
-		} else {
-			var stdout, stderr bytes.Buffer
-
-			cmd := exec.Command("sh", "-c", "spotdl "+url)
-
-			cmd.Stdout = &stdout
-			cmd.Stderr = &stderr
-
-			if cmd.Run() != nil {
-				log.Println(err)
-
-			}
-
-			executedOut := stdout.String() + stderr.String()
-			output := strings.ReplaceAll(executedOut, "sh: 1: kill: No such process", "")
-			out := noansi.NoAnsi(output)
-
-			c.Response().Header().Set("Content-Type", "application/json")
-			c.Response().WriteHeader(http.StatusCreated)
-
-			json.NewEncoder(c.Response()).Encode(map[string]string{"url": url, "output": out, "status": "success"})
-
-			tools.MoveSong()
+		if err = cmd.Run(); err != nil {
+			log.Println(err)
+			stderr.Write([]byte(err.Error()))
 
 		}
 
-		return nil
+		executedOut := stdout.String() + stderr.String()
+		output := strings.ReplaceAll(executedOut, "sh: 1: kill: No such process", "")
+		out := noansi.NoAnsi(output)
 
-	case "windows":
-		var inputUrl tools.Url
+		json.NewEncoder(c.Response()).Encode(map[string]string{"url": url, "output": out, "status": "success"})
 
-		reqBody, err := ioutil.ReadAll(c.Request().Body)
-
-		if err != nil {
-			fmt.Fprintf(c.Response(), "Error")
-
-		}
-
-		json.Unmarshal(reqBody, &inputUrl)
-
-		url := inputUrl.Url
-
-		if url == "" {
-			c.Response().Header().Set("Content-Type", "application/json")
-			c.Response().WriteHeader(http.StatusCreated)
-
-			json.NewEncoder(c.Response()).Encode(map[string]string{"error": "empty url!"})
-
-		} else if !tools.S.MatchString(url) {
-			c.Response().Header().Set("Content-Type", "application/json")
-			c.Response().WriteHeader(http.StatusCreated)
-
-			json.NewEncoder(c.Response()).Encode(map[string]string{"error": "not a spotify url!"})
-
-		} else {
-			var stdout, stderr bytes.Buffer
-
-			cmd := exec.Command("cmd", "/c", ("spotdl " + url))
-
-			cmd.Stdout = &stdout
-			cmd.Stderr = &stderr
-
-			if cmd.Run() != nil {
-				log.Println(err)
-
-			}
-
-			output := stdout.String() + stderr.String()
-
-			c.Response().Header().Set("Content-Type", "application/json")
-			c.Response().WriteHeader(http.StatusCreated)
-
-			json.NewEncoder(c.Response()).Encode(map[string]string{"url": url, "output": output, "status": "success"})
-
-			tools.MoveSong()
-		}
-
-		return nil
-
-	default:
-		log.Println("Unknown OS")
-
-		return nil
+		tools.MoveSong()
 	}
+
+	return
 
 }
