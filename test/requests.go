@@ -23,6 +23,14 @@ func requestSpotify() (err error) {
 	if err = makePostRequest(content, "spotify"); err != nil {
 		fmt.Println(err)
 	}
+	content = strings.NewReader(`{"Url":""}`)
+	if err = makePostRequest(content, "spotify"); err != nil {
+		fmt.Println(err)
+	}
+	content = strings.NewReader(`{"Url":"https://www.youtube.com/watch?v=ACZURx8hYJQ"}`)
+	if err = makePostRequest(content, "spotify"); err != nil {
+		fmt.Println(err)
+	}
 	return
 }
 
