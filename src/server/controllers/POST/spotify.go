@@ -14,21 +14,7 @@ import (
 )
 
 //this functions works for check any kind of error of the client
-func errControl(c echo.Context, url string) (output bool) {
-	output = true
-	if output = !(url == ""); !output {
 
-		json.NewEncoder(c.Response()).Encode(map[string]string{"error": "empty url!"})
-		return
-
-	} else if output = tools.S.MatchString(url); !output {
-
-		json.NewEncoder(c.Response()).Encode(map[string]string{"error": "not a spotify url!"})
-		return
-	}
-	return
-
-}
 func Spotify(c echo.Context) (err error) {
 	var stdout, stderr bytes.Buffer
 	var inputUrl tools.Url
@@ -38,7 +24,7 @@ func Spotify(c echo.Context) (err error) {
 
 	url := inputUrl.Url
 
-	if errControl(c, url) {
+	if tools.ErrControl(c, "spotify", url, tools.S) {
 
 		cmd := exec.Command("python3", "-m", "spotdl", url)
 

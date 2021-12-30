@@ -2,8 +2,6 @@ package POST
 
 import (
 	"encoding/json"
-	"fmt"
-	"io/ioutil"
 	"net/http"
 	"os/exec"
 	"runtime"
@@ -14,26 +12,13 @@ import (
 )
 
 func Download(c echo.Context) error {
+	c.Response().WriteHeader(http.StatusCreated)
 	var inputUrl tools.Url
-	reqBody, err := ioutil.ReadAll(c.Request().Body)
-	if err != nil {
-		fmt.Fprintf(c.Response(), "Error")
-
-	}
-	json.Unmarshal(reqBody, &inputUrl)
+	json.NewDecoder(c.Request().Body).Decode(&inputUrl)
 	url := inputUrl.Url
-	switch {
-	case url == "":
-		c.Response().Header().Set("Content-Type", "application/json")
-		c.Response().WriteHeader(http.StatusCreated)
-		json.NewEncoder(c.Response()).Encode(map[string]string{"error": "empty url!"})
-	case !tools.V.MatchString(url):
-		c.Response().Header().Set("Content-Type", "application/json")
-		c.Response().WriteHeader(http.StatusCreated)
-		json.NewEncoder(c.Response()).Encode(map[string]string{"error": "not a youtube url!"})
-	default:
-		c.Response().Header().Set("Content-Type", "application/json")
-		c.Response().WriteHeader(http.StatusCreated)
+	tools.ErrControl(c, "youtube", url, tools.V)
+	if tools.ErrControl(c, "youtube", url, tools.V) {
+
 		json.NewEncoder(c.Response()).Encode(map[string]string{"video_downloaded": url})
 		switch runtime.GOOS {
 		case "windows":
