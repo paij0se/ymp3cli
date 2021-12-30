@@ -61,9 +61,9 @@ $ ymp3cli --h
 
 $ ymp3cli # start ymp3cli
 
-$ ymp3cli https://www.youtube.com/watch?v=dQw4w9WgXcQ # download a song from youtube
+$ ymp3cli -d https://www.youtube.com/watch?v=dQw4w9WgXcQ # download a song from youtube
 
-$ ymp3cli song.mp3 # play a single song
+$ ymp3cli -p song.mp3 # play a single song
 
 ```
 
