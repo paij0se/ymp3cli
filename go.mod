@@ -7,7 +7,7 @@ require (
 	github.com/faiface/beep v1.1.0
 	github.com/hugolgst/rich-go v0.0.0-20210925091458-d59fb695d9c0
 	github.com/labstack/echo v3.3.10+incompatible
-	github.com/paij0se/lmmp3 v0.0.4
+	github.com/paij0se/lmmp3 v0.0.5
 )
 
 require (
