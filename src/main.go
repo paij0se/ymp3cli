@@ -16,7 +16,7 @@ import (
 )
 
 var (
-	version     = "0.2.1"
+	version     = "0.2.2"
 	help        bool
 	showVersion bool
 	url         string
@@ -62,6 +62,8 @@ func main() {
 		os.Mkdir("music", 0777)
 
 	}
+	// This is going to install ffmpeg if is not installed
+	lmmp3.DownloadFFmpeg()
 	if url != "" {
 		lmmp3.DownloadAndConvert(os.Args[2])
 		if runtime.GOOS == "windows" {
