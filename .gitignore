@@ -2,7 +2,6 @@
 music/
 
 
-go.sum
 *.mp3
 .spotdl-cache
 main
