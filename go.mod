@@ -7,7 +7,7 @@ require (
 	github.com/faiface/beep v1.1.0
 	github.com/hugolgst/rich-go v0.0.0-20210925091458-d59fb695d9c0
 	github.com/labstack/echo v3.3.10+incompatible
-	github.com/paij0se/lmmp3 v0.0.7
+	github.com/paij0se/lmmp3 v0.0.8
 )
 
 require (
@@ -22,8 +22,8 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.1 // indirect
 	golang.org/x/crypto v0.0.0-20211117183948-ae814b36b871 // indirect
-	golang.org/x/net v0.0.0-20211203184738-4852103109b8 // indirect
-	golang.org/x/sys v0.0.0-20211204120058-94396e421777 // indirect
+	golang.org/x/net v0.0.0-20211215060638-4ddde0e984e9 // indirect
+	golang.org/x/sys v0.0.0-20211214234402-4825e8c3871d // indirect
 	golang.org/x/text v0.3.7 // indirect
 )
 
@@ -38,9 +38,9 @@ require (
 	github.com/bitly/go-simplejson v0.5.0 // indirect
 	github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e // indirect
 	github.com/dlclark/regexp2 v1.4.1-0.20201116162257-a2a8dda75c91 // indirect
-	github.com/dop251/goja v0.0.0-20211203105952-bf6af58bbcc8 // indirect
+	github.com/dop251/goja v0.0.0-20211211112501-fb27c91c26ed // indirect
 	github.com/go-sourcemap/sourcemap v2.1.3+incompatible // indirect
-	github.com/kkdai/youtube/v2 v2.7.5 // indirect
+	github.com/kkdai/youtube/v2 v2.7.7 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	gopkg.in/natefinch/npipe.v2 v2.0.0-20160621034901-c1b8fa8bdcce // indirect
 )
