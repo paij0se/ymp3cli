@@ -7,7 +7,7 @@ require (
 	github.com/faiface/beep v1.1.0
 	github.com/hugolgst/rich-go v0.0.0-20210925091458-d59fb695d9c0
 	github.com/labstack/echo v3.3.10+incompatible
-	github.com/paij0se/lmmp3 v0.0.8
+	github.com/paij0se/lmmp3 v0.0.9
 )
 
 require (
@@ -40,7 +40,7 @@ require (
 	github.com/dlclark/regexp2 v1.4.1-0.20201116162257-a2a8dda75c91 // indirect
 	github.com/dop251/goja v0.0.0-20211211112501-fb27c91c26ed // indirect
 	github.com/go-sourcemap/sourcemap v2.1.3+incompatible // indirect
-	github.com/kkdai/youtube/v2 v2.7.7 // indirect
+	github.com/kkdai/youtube/v2 v2.7.8 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	gopkg.in/natefinch/npipe.v2 v2.0.0-20160621034901-c1b8fa8bdcce // indirect
 )
