@@ -8,6 +8,7 @@ func HelpCommand() {
   -h ,-help: Display the help command
   -v ,-version: Display the version of ymp3cli
   -p ,-play: Play a single song
+  -u ,-update: Update ymp3cli to the latest version
   -d ,-download ,-download: Download a song from youtube
   -port: Port to run the server on
 
