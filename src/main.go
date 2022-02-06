@@ -16,8 +16,9 @@ import (
 )
 
 var (
-	version     = "0.2.3"
+	version     = "0.3.0"
 	help        bool
+	update      bool
 	showVersion bool
 	url         string
 	port        int
@@ -52,6 +53,9 @@ func init() {
 	flag.StringVar(&song, "p", "", "play a single song")
 	flag.StringVar(&song, "play", "", "play a single song")
 
+	flag.BoolVar(&update, "update", false, "update ymp3cli to the latest version")
+	flag.BoolVar(&update, "u", false, "update ymp3cli to the latest version")
+
 	flag.IntVar(&port, "port", 0, "port to run the server on")
 	flag.Parse()
 }
@@ -72,14 +76,14 @@ func main() {
 				fmt.Println("Error deleting the mpeg files")
 			}
 		}
-
 	} else if song != "" {
 		cli.PlaySongCli(song)
 	} else if help {
 		cli.HelpCommand()
+	} else if update {
+		cli.Update()
 	} else if showVersion {
 		fmt.Println(version)
-
 	} else {
 		startServer()
 	}
