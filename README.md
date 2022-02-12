@@ -43,12 +43,17 @@ $ ymp3cli --h
   -v ,-version: Display the version of ymp3cli
   -p ,-play: Play a single song
   -u ,-update: Update ymp3cli to the latest version
-  -d ,-download ,-download: Download a song from youtube
+  -d ,-download: Download a song from youtube
+  -s ,-speed: That allows changing the playback speed
   -port: Port to run the server on
 
   Usage: ymp3cli -p [SONG]
   ymp3cli -p <song.mp3>: play a single song
   example: ymp3cli -p song.mp3
+
+  Usage: ymp3cli -s [SONG]
+  ymp3cli -s <song.mp3>: change the playback speed
+  example: ymp3cli -s song.mp3
 
   Usage: ymp3cli -d [Link]
   ymp3cli -d <link>: download a song from youtube
