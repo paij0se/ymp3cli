@@ -7,6 +7,11 @@
 <h1>Discord RPC</h1>
 
 <img src="https://media.discordapp.net/attachments/786759600245309460/923773844135747594/unknown.png?width=248&height=430"/>
+	
+<h1>Change the playback speed<h1>
+
+https://user-images.githubusercontent.com/69026987/153721642-be1a61c7-aa3c-4ec9-898b-37d73d994b17.mp4
+	
 </div>
 
 <h1>Why???</h1>
