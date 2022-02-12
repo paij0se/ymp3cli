@@ -16,10 +16,11 @@ import (
 )
 
 var (
-	version     = "0.3.1"
+	version     = "0.3.2"
 	help        bool
 	update      bool
 	showVersion bool
+	speed       string
 	url         string
 	port        int
 	song        string
@@ -50,6 +51,9 @@ func init() {
 	flag.StringVar(&url, "d", "", "download a song from youtube ")
 	flag.StringVar(&url, "download", "", "download a song from youtube ")
 
+	flag.StringVar(&speed, "s", "", "that allows changing the playback speed")
+	flag.StringVar(&speed, "speed", "", "that allows changing the playback speed")
+
 	flag.StringVar(&song, "p", "", "play a single song")
 	flag.StringVar(&song, "play", "", "play a single song")
 
@@ -66,7 +70,7 @@ func main() {
 		os.Mkdir("music", 0777)
 
 	}
-	// This is going to install ffmpeg if is not installed
+	// This is going to install ffmpeg if is not installed(only on windows)
 	lmmp3.DownloadFFmpeg()
 	if url != "" {
 		lmmp3.DownloadAndConvert(os.Args[2])
@@ -78,6 +82,9 @@ func main() {
 		}
 	} else if song != "" {
 		cli.PlaySongCli(song)
+	} else if speed != "" {
+		go rpc.Speedrpc(os.Args[2])
+		cli.Speedy(os.Args[2])
 	} else if help {
 		cli.HelpCommand()
 	} else if update {

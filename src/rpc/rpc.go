@@ -68,3 +68,34 @@ func DefaultRpc(port int) {
 	}
 
 }
+
+func Speedrpc(song string) {
+	err := client.Login("851297648111517697")
+	if err != nil {
+		fmt.Println("No discord detected")
+	}
+	for {
+		time.Sleep(time.Second * 1)
+		err = client.SetActivity(client.Activity{
+			State:      "🎵🖥️",
+			Details:    "🥷🏿:" + song,
+			LargeImage: "skull",
+			LargeText:  "🙏",
+			SmallImage: "wallpaperbetter_com_1366x768",
+			SmallText:  "yessir",
+			Buttons: []*client.Button{
+				&client.Button{
+					Label: "GitHub",
+					Url:   "https://github.com/paij0se/ymp3cli",
+				},
+			},
+		})
+
+		if err != nil {
+			fmt.Println("Error in rpc")
+		}
+		fmt.Print("")
+
+	}
+
+}
