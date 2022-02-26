@@ -1,0 +1,228 @@
+#!/bin/sh
+
+audioplayer="mpv"
+
+deps=("mpv" "tput" "youtube-dl")
+
+version="2.0.0-beta1"
+
+###
+
+end_process()
+{
+  printf '%s\n' "$1"
+  exit
+}
+
+create_question()
+{
+  printf '%s\n ↳ ' "$1"
+  read -r rly
+}
+
+validate_number()
+{
+  [ $1 -lt 1 ] || [ $1 -gt $2 ] &&
+    end_process 'Invalid number entered.'
+}
+
+options=(
+  "Download a music/song from Youtube."
+  "Download a music/song from Spotify."
+  ""
+  "Play all music/song."
+  "Play multiple music/song."
+  "Play a music/song."
+  "Delete a music/song."
+  ""
+  "Exit"
+)
+
+###
+
+show_help()
+{
+  while IFS= read -r line; do
+    printf '%s\n' "$line"
+  done <<-EOF
+
+  Download and listen to songs/music from the console/terminal.
+
+  Usage:
+    $0 -d | -h | -v
+    $0
+
+  Options:
+    -d  Show dependencies.
+    -h  Shows the available options and their uses.
+    -u  Update the script.
+    -v  Show cli version.
+
+	EOF
+}
+
+###
+
+while getopts 'hvdV:' opt; do
+  case $opt in
+  d)
+    printf 'Dependencies:\n'
+
+    for dep in "${deps[@]}"; do
+      printf ' ↳ %s\n' "$dep"
+    done
+    exit
+  ;;
+
+  h)
+    show_help $0 &
+    exit
+  ;;
+
+  u)
+    update="$(curl -s "https://raw.githubusercontent.com/paij0se/ymp3cli/master/ymp3cli" | diff -u "$0" -)"
+
+    if [ -z "$update" ]; then
+      printf 'Script is up to date.'
+    else
+      if printf '%s\n' "$update" | patch "$0" -; then
+        printf 'Script has been updated'
+      else
+        end_process "Can't update for some reason!"
+      fi
+    fi
+  ;;
+
+  v)
+    printf 'v%s\n' $version &
+    exit
+  ;;
+
+  esac
+done
+
+###
+
+clear_screen()
+{
+  if command -v tput &> /dev/null
+  then
+    tput clear
+  fi
+}
+
+###
+
+while true; do
+  clear_screen
+  printf '%s\n' 'What do you want to do?'
+
+  for ((i = 0, j = 0; i < ${#options[@]}; i++)); do
+    [ "${options[$i]}" != "" ] && printf ' ↳ %s\n' "[$((i + 1 - j))] ${options[$i]}" && continue
+
+    printf '\n'
+    j=$((j + 1))
+  done
+
+  printf '\n ↳ '
+  read -r rly
+  validate_number $rly ${#options[@]}
+
+  clear_screen
+
+  case $rly in
+  1)
+    create_question 'Enter the URL of the song/music:'
+
+    if [ ! -d "music" ]; then
+      mkdir -p "music"
+    fi
+
+    cd 'music'
+    youtube-dl -f 'bestaudio[ext=m4a]' "$rly"
+    cd ..
+  ;;
+
+  2)
+    clear_screen
+    printf 'Not implemented yet.\n'
+
+    read -p "Press enter to continue"
+  ;;
+
+  3)
+    for entry in 'music'/*; do
+      if [ "${entry: -4}" == ".m4a" ]; then
+        mpv --no-video "$entry"
+      fi
+    done
+  ;;
+
+  4)
+    printf 'Enter the URLs/IDs of the songs/musics:\n'
+
+    musics=('music'/*)
+    i=1
+
+    for entry in "${musics[@]}"; do
+      if [ "${entry: -4}" == ".m4a" ]; then
+        printf ' ↳ %s\n' "[$i] $entry"
+
+        i=$((i + 1))
+      fi
+    done
+
+    printf '%s\n ↳ ' "$1"
+    read -r rly rly2
+
+    validate_number $rly ${#musics[@]}
+    validate_number $rly2 ${#musics[@]}
+
+    for ((i = $((rly - 1)); i < $rly2; i++)); do
+      mpv --no-video "${musics[$i]}"
+    done
+  ;;
+
+  5)
+    printf 'Enter the URL/ID of the song/music:\n'
+
+    musics=('music'/*)
+    i=1
+
+    for entry in "${musics[@]}"; do
+      if [ "${entry: -4}" == ".m4a" ]; then
+        printf ' ↳ %s\n' "[$i] $entry"
+
+        i=$((i + 1))
+      fi
+    done
+
+    create_question ''
+    mpv --no-video "${musics[$rly - 1]}"
+  ;;
+
+  6)
+    printf 'Enter the ID of the song/music:\n'
+
+    musics=('music'/*)
+    i=1
+
+    for entry in "${musics[@]}"; do
+      if [ "${entry: -4}" == ".m4a" ]; then
+        printf ' ↳ %s\n' "[$i] $entry"
+
+        i=$((i + 1))
+      fi
+    done
+
+    create_question ''
+    validate_number $rly ${#musics[@]}
+
+    rm "${musics[$rly - 1]}"
+    ;;
+
+  7)
+    end_process 'Bye!'
+  ;;
+  esac
+done
