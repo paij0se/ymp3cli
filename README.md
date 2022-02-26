@@ -25,7 +25,7 @@ This is how "ymp3cli" looks.
 #### **Using curl**
 
 ```bash
-$ curl https://github.com/paij0se/ymp3cli --output ymp3cli && cd ymp3cli
+$ curl https://raw.githubusercontent.com/paij0se/ymp3cli/master/ymp3cli --output ymp3cli && cd ymp3cli
 ```
 
 ```bash
