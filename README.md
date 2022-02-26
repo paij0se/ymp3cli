@@ -13,7 +13,8 @@ This is how "ymp3cli" looks.
 ## **Dependencies**
 "ymp3cli" needs some dependencies.
 
-- `mpv` ─ required.
+- `curl` ─ Required.
+- `mpv` ─ Required.
 - `youtube-dl` ─ Required.
 
 - `tput` ─ Optional.
