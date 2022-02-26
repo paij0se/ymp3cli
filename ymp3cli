@@ -2,7 +2,7 @@
 
 audioplayer="mpv"
 
-deps=("mpv" "tput" "youtube-dl")
+deps=("curl" "mpv" "tput" "youtube-dl")
 
 version="1.0.0-beta1"
 
