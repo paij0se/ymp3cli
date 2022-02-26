@@ -1,6 +1,6 @@
 {
   "name": "ymp3cli",
-  "version": "2.0.0-beta1",
+  "version": "1.0.0-beta1",
   "description": "\"ymp3cli\" is a simple cli to listen or download songs or music.",
   "main": "ymp3cli",
   "repository": {

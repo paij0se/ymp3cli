@@ -4,8 +4,6 @@
 ## **Preview**
 This is how "ymp3cli" looks.
 
-
-
 ## **Dependencies**
 "ymp3cli" needs some dependencies.
 
