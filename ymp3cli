@@ -197,6 +197,7 @@ while true; do
       fi
     done
 
+    printf '%s\n ↳ '
     read -r rly
 
     case $rly in
