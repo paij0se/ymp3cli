@@ -1,6 +1,11 @@
 # **ymp3cli**
 "ymp3cli" is a simple cli to listen/download songs/music.
 
+## **Preview**
+This is how "ymp3cli" looks.
+
+
+
 ## **Dependencies**
 "ymp3cli" needs some dependencies.
 

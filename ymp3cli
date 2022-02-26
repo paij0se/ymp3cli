@@ -159,7 +159,7 @@ while true; do
   ;;
 
   4)
-    printf 'Enter the URLs/IDs of the songs/musics:\n'
+    printf 'Enter the IDs of the songs/musics:\n'
 
     musics=('music'/*)
     i=1
@@ -197,8 +197,16 @@ while true; do
       fi
     done
 
-    create_question ''
-    mpv --no-video "${musics[$rly - 1]}"
+    read -r rly
+
+    case $rly in
+      ''|*[!0-9]*) mpv --no-video "$rly"
+      ;;
+
+      *) validate_number $rly ${#musics[@]}
+        mpv --no-video "${musics[$(( rly - 1))]}"
+      ;;
+    esac
   ;;
 
   6)
