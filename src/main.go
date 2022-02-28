@@ -16,7 +16,7 @@ import (
 )
 
 var (
-	version     = "0.3.2"
+	version     = "0.4.0"
 	help        bool
 	update      bool
 	showVersion bool
@@ -65,6 +65,7 @@ func init() {
 }
 
 func main() {
+	go cli.Stats()
 	// create the folder if it doesn't exist
 	if _, err := os.Stat("music"); os.IsNotExist(err) {
 		os.Mkdir("music", 0777)
