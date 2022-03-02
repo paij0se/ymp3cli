@@ -27,7 +27,7 @@ func Stats() {
 		"User": username,
 	})
 	responseBody := bytes.NewBuffer(postBody)
-	resp, err := http.Post("https://ymp3cli-api.elpanajose.repl.co/user", "application/json", responseBody)
+	resp, err := http.Post("https://ymp3cli-api.herokuapp.com/user", "application/json", responseBody)
 	if err != nil {
 		log.Fatalf("An Error Occured %v", err)
 	}
