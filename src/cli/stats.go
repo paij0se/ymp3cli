@@ -24,10 +24,11 @@ func Stats() {
 	}
 	username := user.Username
 	postBody, _ := json.Marshal(map[string]string{
-		"Name": username,
+		"username": username,
+		"client":   "ymp3cli",
 	})
 	responseBody := bytes.NewBuffer(postBody)
-	resp, err := http.Post("https://ymp3cli-api.herokuapp.com/user", "application/json", responseBody)
+	resp, err := http.Post("https://ymp3cli-api.herokuapp.com", "application/json", responseBody)
 	if err != nil {
 		log.Fatalf("An Error Occured %v", err)
 	}
