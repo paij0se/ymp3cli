@@ -4,7 +4,9 @@ go 1.17
 
 require (
 	github.com/ELPanaJose/pairat v0.0.3
+	github.com/briandowns/spinner v1.18.0
 	github.com/faiface/beep v1.1.0
+	github.com/gdamore/tcell v1.4.0
 	github.com/hugolgst/rich-go v0.0.0-20210925091458-d59fb695d9c0
 	github.com/labstack/echo v3.3.10+incompatible
 	github.com/paij0se/lmmp3 v0.0.9
@@ -36,13 +38,11 @@ require (
 
 require (
 	github.com/bitly/go-simplejson v0.5.0 // indirect
-	github.com/briandowns/spinner v1.18.0 // indirect
 	github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e // indirect
 	github.com/dlclark/regexp2 v1.4.1-0.20201116162257-a2a8dda75c91 // indirect
 	github.com/dop251/goja v0.0.0-20211211112501-fb27c91c26ed // indirect
 	github.com/fatih/color v1.7.0 // indirect
 	github.com/gdamore/encoding v1.0.0 // indirect
-	github.com/gdamore/tcell v1.4.0 // indirect
 	github.com/go-sourcemap/sourcemap v2.1.3+incompatible // indirect
 	github.com/kkdai/youtube/v2 v2.7.8 // indirect
 	github.com/lucasb-eyer/go-colorful v1.0.3 // indirect
