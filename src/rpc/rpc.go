@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"math/rand"
 	"net/http"
 	"time"
 
@@ -16,6 +17,10 @@ type Respose struct {
 }
 
 func DefaultRpc(port int) {
+	images := []string{"https://cdn.discordapp.com/emojis/756615654404259870.webp?size=96&quality=lossless", "https://cdn.discordapp.com/emojis/763985835329978398.webp?size=96&quality=lossless", "https://cdn.discordapp.com/emojis/897294079275192350.webp?size=96&quality=lossless", "https://cdn.discordapp.com/emojis/765001183869403176.webp?size=96&quality=lossless", "https://cdn.discordapp.com/emojis/937819339233574952.webp?size=96&quality=lossless"}
+	randImage := rand.Intn(len(images))
+	pick := images[randImage]
+
 	err := client.Login("851297648111517697")
 	if err != nil {
 		fmt.Println("No discord detected")
@@ -48,7 +53,7 @@ func DefaultRpc(port int) {
 		err = client.SetActivity(client.Activity{
 			State:      "🎵🖥️",
 			Details:    song,
-			LargeImage: "skull",
+			LargeImage: pick,
 			LargeText:  "🙏",
 			SmallImage: "wallpaperbetter_com_1366x768",
 			SmallText:  "yessir",
@@ -56,6 +61,10 @@ func DefaultRpc(port int) {
 				&client.Button{
 					Label: "GitHub",
 					Url:   "https://github.com/paij0se/ymp3cli",
+				},
+				{
+					Label: "Website",
+					Url:   "https://ymp3cli.tk",
 				},
 			},
 		})
@@ -70,6 +79,9 @@ func DefaultRpc(port int) {
 }
 
 func Speedrpc(song string) {
+	images := []string{"https://cdn.discordapp.com/emojis/756615654404259870.webp?size=96&quality=lossless", "https://cdn.discordapp.com/emojis/763985835329978398.webp?size=96&quality=lossless", "https://cdn.discordapp.com/emojis/897294079275192350.webp?size=96&quality=lossless", "https://cdn.discordapp.com/emojis/765001183869403176.webp?size=96&quality=lossless", "https://cdn.discordapp.com/emojis/937819339233574952.webp?size=96&quality=lossless"}
+	randImage := rand.Intn(len(images))
+	pick := images[randImage]
 	err := client.Login("851297648111517697")
 	if err != nil {
 		fmt.Println("No discord detected")
@@ -77,9 +89,9 @@ func Speedrpc(song string) {
 	for {
 		time.Sleep(time.Second * 1)
 		err = client.SetActivity(client.Activity{
-			State:      "🎵🖥️",
-			Details:    "🥷🏿:" + song,
-			LargeImage: "skull",
+			State:      "🥷🏿",
+			Details:    "remixing " + song,
+			LargeImage: pick,
 			LargeText:  "🙏",
 			SmallImage: "wallpaperbetter_com_1366x768",
 			SmallText:  "yessir",
@@ -87,6 +99,10 @@ func Speedrpc(song string) {
 				&client.Button{
 					Label: "GitHub",
 					Url:   "https://github.com/paij0se/ymp3cli",
+				},
+				{
+					Label: "Website",
+					Url:   "https://ymp3cli.tk",
 				},
 			},
 		})

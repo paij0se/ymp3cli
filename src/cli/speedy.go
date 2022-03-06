@@ -50,6 +50,7 @@ func (ap *audioPanel) draw(screen tcell.Screen) {
 	screen.Fill(' ', mainStyle)
 	drawTextLine(screen, 0, 1, "Press [ESC] to quit.", mainStyle)
 	drawTextLine(screen, 0, 2, "Press [SPACE] to pause/resume.", mainStyle)
+	drawTextLine(screen, 0, 3, os.Args[2], mainStyle)
 
 	speaker.Lock()
 	position := ap.sampleRate.D(ap.streamer.Position())
