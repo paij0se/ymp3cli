@@ -1,8 +1,8 @@
-<h1>A simple tool to download music from youtube/spotify and listen in the terminal.</h1>
+<h1>A simple terminal tool for downloading and listening music from YouTube, Spotify and SoundCloud </h1>
 <p>consumes <10MB of ram!!!</p>
 <div align=center>
 
-<img src="https://media.discordapp.net/attachments/786759600245309460/923782488927641670/unknown.png?width=572&height=457"/>
+<img src="https://media.discordapp.net/attachments/907631182240436305/950177164718915604/unknown.png?width=625&height=400"/>
 
 <h1>Discord RPC</h1>
 
@@ -50,6 +50,8 @@ $ ymp3cli --h
   -u ,-update: Update ymp3cli to the latest version
   -d ,-download: Download a song from youtube
   -s ,-speed: That allows changing the playback speed
+  -sd ,-soundcloud: Download a song from soundcloud
+  -sp ,-spotify: Download a song from spotify
   -port: Port to run the server on
 
   Usage: ymp3cli -p [SONG]
@@ -100,7 +102,7 @@ and for execute ymp3cli just run `./ymp3cli`.
 - [x] download the videos without youtube-dl
 - [x] works correctly in windows
 - [x] Discord rpc
-- [ ] able to pause and rewind the songs
+- [x] able to pause and rewind the songs
 - [ ] A playlists system
 - [x] able to play a song one by one
 

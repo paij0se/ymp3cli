@@ -19,7 +19,7 @@ func Download(c echo.Context) error {
 	tools.ErrControl(c, "youtube", url, tools.V)
 	if tools.ErrControl(c, "youtube", url, tools.V) {
 
-		json.NewEncoder(c.Response()).Encode(map[string]string{"video_downloaded": url})
+		json.NewEncoder(c.Response()).Encode(map[string]string{"song_downloaded": url})
 		switch runtime.GOOS {
 		case "windows":
 			lmmp3.DownloadAndConvert(url)

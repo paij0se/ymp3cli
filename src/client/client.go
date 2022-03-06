@@ -25,6 +25,17 @@ var questions = []handlers.BaseQuestion{
 		},
 	},
 	{
+		Name: "Download a Song from SoundCloud☁️",
+		Option: &handlers.QuestionOption{
+			Handler: controllers.DownloadSoundcloud,
+			Label:   "Enter the SoundCloud URL of the song to download☁️",
+			Options: func(url string) []string {
+				return []string{}
+			},
+			Validator: validators.String,
+		},
+	},
+	{
 		Name: "Download a Song/Playlist from Spotify🥗",
 		Option: &handlers.QuestionOption{
 			Handler: controllers.DownloadSpotify,

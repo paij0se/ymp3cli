@@ -3,12 +3,14 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 	"runtime"
 
 	"github.com/paij0se/lmmp3"
 	"github.com/paij0se/ymp3cli/src/cli"
+	"github.com/paij0se/ymp3cli/src/cli/scdl/pkg/soundcloud"
 	"github.com/paij0se/ymp3cli/src/client"
 	"github.com/paij0se/ymp3cli/src/rpc"
 	"github.com/paij0se/ymp3cli/src/server"
@@ -16,14 +18,16 @@ import (
 )
 
 var (
-	version     = "0.4.2"
-	help        bool
-	update      bool
-	showVersion bool
-	speed       string
-	url         string
-	port        int
-	song        string
+	version       = "0.5.0"
+	help          bool
+	update        bool
+	showVersion   bool
+	speed         string
+	url           string
+	urlSoundcloud string
+	spotify       string
+	port          int
+	song          string
 )
 
 func startServer() (err error) {
@@ -53,6 +57,12 @@ func init() {
 
 	flag.StringVar(&speed, "s", "", "that allows changing the playback speed")
 	flag.StringVar(&speed, "speed", "", "that allows changing the playback speed")
+
+	flag.StringVar(&urlSoundcloud, "sd", "", "download a song from soundcloud ")
+	flag.StringVar(&urlSoundcloud, "soundcloud", "", "download a song from soundcloud ")
+
+	flag.StringVar(&spotify, "sp", "", "download a song from spotify ")
+	flag.StringVar(&spotify, "spotify", "", "download a song from spotify ")
 
 	flag.StringVar(&song, "p", "", "play a single song")
 	flag.StringVar(&song, "play", "", "play a single song")
@@ -88,8 +98,17 @@ func main() {
 		cli.Speedy(os.Args[2])
 	} else if help {
 		cli.HelpCommand()
+	} else if urlSoundcloud != "" {
+		soundcloud.ExtractSong(urlSoundcloud)
 	} else if update {
 		cli.Update()
+	} else if spotify != "" {
+		cmd := exec.Command("/bin/bash", "-c", "spotdl "+spotify)
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		if err := cmd.Run(); err != nil {
+			log.Fatal(err)
+		}
 	} else if showVersion {
 		fmt.Println(version)
 	} else {
