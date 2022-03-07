@@ -16,6 +16,7 @@ func DownloadSouncloud(c echo.Context) error {
 	url := inputUrl.Url
 	soundcloud.ExtractSong(url)
 	tools.MoveSong()
+	json.NewEncoder(c.Response()).Encode(url + " Downloaded")
 	return nil
 
 }
