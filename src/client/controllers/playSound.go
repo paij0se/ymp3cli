@@ -28,6 +28,7 @@ func PlaySound(url string, sound string) {
 
 	if err != nil {
 		log.Fatalln(err)
+		log.Println("Error: ", err)
 
 	}
 
