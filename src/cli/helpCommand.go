@@ -29,7 +29,7 @@ func HelpCommand() {
  
 	 MIT License
 	 Made it by pai
-	 https://paijose.cf
+	 visit https://ymp3cli.tk
  
  `)
 }
