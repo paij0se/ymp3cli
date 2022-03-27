@@ -7,6 +7,7 @@ require (
 	github.com/PuerkitoBio/goquery v1.8.0
 	github.com/bogem/id3v2 v1.2.0
 	github.com/briandowns/spinner v1.18.0
+	github.com/dhowden/tag v0.0.0-20201120070457-d52dcb253c63
 	github.com/faiface/beep v1.1.0
 	github.com/fatih/color v1.13.0
 	github.com/gdamore/tcell v1.4.0
@@ -46,7 +47,6 @@ require (
 	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/bitly/go-simplejson v0.5.0 // indirect
 	github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e // indirect
-	github.com/dhowden/tag v0.0.0-20201120070457-d52dcb253c63 // indirect
 	github.com/dlclark/regexp2 v1.4.1-0.20201116162257-a2a8dda75c91 // indirect
 	github.com/dop251/goja v0.0.0-20211211112501-fb27c91c26ed // indirect
 	github.com/gdamore/encoding v1.0.0 // indirect

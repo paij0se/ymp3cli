@@ -17,7 +17,7 @@ import (
 func Rpc(port int) {
 	now := time.Now()
 	for {
-		time.Sleep(time.Second * 3)
+		time.Sleep(time.Second * 5)
 		url := "http://localhost:" + fmt.Sprintf("%d", port) + "/currentSong"
 		resp, err := http.Get(url)
 		if err != nil {
@@ -25,16 +25,16 @@ func Rpc(port int) {
 		}
 		body, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
-			log.Fatalln(err)
+			log.Println(err)
 		}
 		r := string(body)
 		if !strings.HasSuffix(r, ".mp3") {
 		} else {
 			f, err := os.Open(r)
+			defer f.Close()
 			if err != nil {
 				log.Println(err)
 			}
-			defer f.Close()
 			m, err := tag.ReadFrom(f)
 			if err != nil {
 				log.Println(err)
