@@ -14,10 +14,10 @@ import (
 	"github.com/hugolgst/rich-go/client"
 )
 
-func Rpc(port int) string {
+func Rpc(port int) {
 	now := time.Now()
 	for {
-		time.Sleep(time.Second * 1)
+		time.Sleep(time.Second * 3)
 		url := "http://localhost:" + fmt.Sprintf("%d", port) + "/currentSong"
 		resp, err := http.Get(url)
 		if err != nil {
