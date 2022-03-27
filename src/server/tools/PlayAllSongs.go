@@ -30,9 +30,6 @@ func PlayAllSongs(e *echo.Echo) error {
 		}
 		fmt.Println("Playing:", file.Name())
 		e.GET("/currentSong", func(c echo.Context) error {
-			// print the path of the song
-			// if is not playing, print Not Playing
-			c.String(http.StatusOK, "Playing nothing")
 			dir, err := os.Getwd()
 			if err != nil {
 				return c.String(http.StatusInternalServerError, err.Error())

@@ -65,7 +65,7 @@ func Rpc(port int) string {
 			})
 
 			if id != nil {
-				fmt.Println("Error in rpc")
+
 			}
 			fmt.Print("")
 
