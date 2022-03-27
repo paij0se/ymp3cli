@@ -28,7 +28,11 @@ func PlaySongOneByOne(song uint32, e *echo.Echo) error {
 
 	file, err := os.Open("music/" + files[song].Name())
 	e.GET("/currentSong", func(c echo.Context) error {
-		return c.String(http.StatusOK, files[song].Name()[:len(files[song].Name())-4])
+		dir, err := os.Getwd()
+		if err != nil {
+			log.Fatal(err)
+		}
+		return c.String(http.StatusOK, dir+"/music/"+files[song].Name())
 	})
 
 	if err != nil {

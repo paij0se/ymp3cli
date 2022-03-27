@@ -1,117 +1,104 @@
 package rpc
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
-	"math/rand"
 	"net/http"
+	"os"
+	"regexp"
+	"strings"
 	"time"
 
+	"github.com/dhowden/tag"
 	"github.com/hugolgst/rich-go/client"
 )
 
-type Respose struct {
-	Message string
-}
-
-func DefaultRpc(port int) {
-	images := []string{"https://cdn.discordapp.com/emojis/756615654404259870.webp?size=96&quality=lossless", "https://cdn.discordapp.com/emojis/763985835329978398.webp?size=96&quality=lossless", "https://cdn.discordapp.com/emojis/897294079275192350.webp?size=96&quality=lossless", "https://cdn.discordapp.com/emojis/765001183869403176.webp?size=96&quality=lossless", "https://cdn.discordapp.com/emojis/937819339233574952.webp?size=96&quality=lossless"}
-	randImage := rand.Intn(len(images))
-	pick := images[randImage]
-
-	err := client.Login("851297648111517697")
-	if err != nil {
-		fmt.Println("No discord detected")
-	}
+func Rpc(port int) string {
+	now := time.Now()
 	for {
 		time.Sleep(time.Second * 1)
-
 		url := "http://localhost:" + fmt.Sprintf("%d", port) + "/currentSong"
 		resp, err := http.Get(url)
-
 		if err != nil {
-			log.Fatalln(err)
-
+			log.Println(err)
 		}
-
 		body, err := ioutil.ReadAll(resp.Body)
-
 		if err != nil {
 			log.Fatalln(err)
-
 		}
-
 		r := string(body)
-		song := "Listening " + r
-		var res Respose
-		json.Unmarshal([]byte(r), &res)
-		if res.Message == "Not Found" { // {"message":"Not Found"}
-			song = "Listening Nothing💀"
-		}
-		err = client.SetActivity(client.Activity{
-			State:      "🎵🖥️",
-			Details:    song,
-			LargeImage: pick,
-			LargeText:  "🙏",
-			SmallImage: "wallpaperbetter_com_1366x768",
-			SmallText:  "yessir",
-			Buttons: []*client.Button{
-				&client.Button{
-					Label: "GitHub",
-					Url:   "https://github.com/paij0se/ymp3cli",
+		if !strings.HasSuffix(r, ".mp3") {
+		} else {
+			f, err := os.Open(r)
+			if err != nil {
+				log.Println(err)
+			}
+			defer f.Close()
+			m, err := tag.ReadFrom(f)
+			if err != nil {
+				log.Println(err)
+			}
+			match := regexp.MustCompile(`(|v\/|vi=|vi\/|youtu.be\/)[a-zA-Z0-9_-]{11}`)
+			img := "https://img.youtube.com/vi/" + match.FindString(m.Comment()) + "/hqdefault.jpg"
+			id := client.Login("851297648111517697")
+			if err != nil {
+				fmt.Println("No discord detected")
+			}
+			err = client.SetActivity(client.Activity{
+				State:      "By " + m.Artist(),
+				Details:    "Listening " + m.Title(),
+				LargeImage: img,
+				Timestamps: &client.Timestamps{
+					Start: &now,
 				},
-				{
-					Label: "Website",
-					Url:   "https://ymp3cli.tk",
+				Buttons: []*client.Button{
+					&client.Button{
+						Label: "Play on YouTube",
+						Url:   m.Comment(),
+					},
+					{
+						Label: "Download ymp3cli",
+						Url:   "https://github.com/paij0se/ymp3cli/releases/latest",
+					},
 				},
-			},
-		})
+			})
 
-		if err != nil {
-			fmt.Println("Error in rpc")
+			if id != nil {
+				fmt.Println("Error in rpc")
+			}
+			fmt.Print("")
+
 		}
-		fmt.Print("")
-
 	}
 
 }
-
 func Speedrpc(song string) {
-	images := []string{"https://cdn.discordapp.com/emojis/756615654404259870.webp?size=96&quality=lossless", "https://cdn.discordapp.com/emojis/763985835329978398.webp?size=96&quality=lossless", "https://cdn.discordapp.com/emojis/897294079275192350.webp?size=96&quality=lossless", "https://cdn.discordapp.com/emojis/765001183869403176.webp?size=96&quality=lossless", "https://cdn.discordapp.com/emojis/937819339233574952.webp?size=96&quality=lossless"}
-	randImage := rand.Intn(len(images))
-	pick := images[randImage]
 	err := client.Login("851297648111517697")
 	if err != nil {
 		fmt.Println("No discord detected")
 	}
-	for {
-		time.Sleep(time.Second * 1)
-		err = client.SetActivity(client.Activity{
-			State:      "🥷🏿",
-			Details:    "remixing " + song,
-			LargeImage: pick,
-			LargeText:  "🙏",
-			SmallImage: "wallpaperbetter_com_1366x768",
-			SmallText:  "yessir",
-			Buttons: []*client.Button{
-				&client.Button{
-					Label: "GitHub",
-					Url:   "https://github.com/paij0se/ymp3cli",
-				},
-				{
-					Label: "Website",
-					Url:   "https://ymp3cli.tk",
-				},
+	now := time.Now()
+	err = client.SetActivity(client.Activity{
+		Details:    "remixing " + song,
+		LargeImage: "https://cdn.discordapp.com/emojis/822805787771928597.webp?size=128&quality=lossless",
+		Timestamps: &client.Timestamps{
+			Start: &now,
+		},
+		Buttons: []*client.Button{
+			&client.Button{
+				Label: "GitHub",
+				Url:   "https://github.com/paij0se/ymp3cli",
 			},
-		})
+			{
+				Label: "Website",
+				Url:   "https://ymp3cli.tk",
+			},
+		},
+	})
 
-		if err != nil {
-			fmt.Println("Error in rpc")
-		}
-		fmt.Print("")
-
+	if err != nil {
+		fmt.Println("Error in rpc")
 	}
-
+	fmt.Print("")
 }

@@ -18,7 +18,7 @@ import (
 )
 
 var (
-	version       = "0.5.1"
+	version       = "0.6.0"
 	help          bool
 	update        bool
 	showVersion   bool
@@ -40,7 +40,7 @@ func startServer() (err error) {
 		}
 	}
 
-	go rpc.DefaultRpc(port)
+	go rpc.Rpc(port)
 	go client.StartClient(fmt.Sprintf(":%d", port))
 	server.StartServer(fmt.Sprintf(":%d", port))
 	return
