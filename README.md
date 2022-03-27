@@ -6,7 +6,7 @@
 
 <h1>Discord RPC</h1>
 
-<img src="https://media.discordapp.net/attachments/786759600245309460/923773844135747594/unknown.png?width=248&height=430"/>
+<img src="https://media.discordapp.net/attachments/957431274237218849/957681287458590810/unknown.png"/>
 	
 <h1>Change the playback speed<h1>
 
