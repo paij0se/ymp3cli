@@ -80,7 +80,7 @@ func Speedrpc(song string) {
 	}
 	now := time.Now()
 	err = client.SetActivity(client.Activity{
-		Details:    "remixing " + song,
+		Details:    "Remixing " + song,
 		LargeImage: "https://cdn.discordapp.com/emojis/822805787771928597.webp?size=128&quality=lossless",
 		Timestamps: &client.Timestamps{
 			Start: &now,
