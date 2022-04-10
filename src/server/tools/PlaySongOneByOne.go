@@ -6,7 +6,9 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"regexp"
 
+	"github.com/dhowden/tag"
 	"github.com/hajimehoshi/go-mp3"
 	"github.com/hajimehoshi/oto"
 	"github.com/labstack/echo"
@@ -26,13 +28,21 @@ func PlaySongOneByOne(song uint32, e *echo.Echo) error {
 		return nil
 	}
 
-	file, err := os.Open("music/" + files[song].Name())
+	f, err := os.Open("music/" + files[song].Name())
 	e.GET("/currentSong", func(c echo.Context) error {
 		dir, err := os.Getwd()
 		if err != nil {
-			log.Fatal(err)
+			return c.String(http.StatusInternalServerError, err.Error())
 		}
-		return c.String(http.StatusOK, dir+"/music/"+files[song].Name())
+		song, _ := os.Open("music/" + files[song].Name())
+		defer song.Close()
+		tag, err := tag.ReadFrom(song)
+		if err != nil {
+			log.Println(err)
+			return c.String(http.StatusInternalServerError, err.Error())
+		}
+		match := regexp.MustCompile(`(|v\/|vi=|vi\/|youtu.be\/)[a-zA-Z0-9_-]{11}`)
+		return c.JSON(http.StatusOK, map[string]string{"path": dir + "/music/" + f.Name(), "by": tag.Artist(), "title": tag.Title(), "img": "https://img.youtube.com/vi/" + match.FindString(tag.Comment()) + "/hqdefault.jpg", "file": f.Name(), "url": tag.Comment()})
 	})
 
 	if err != nil {
@@ -40,9 +50,9 @@ func PlaySongOneByOne(song uint32, e *echo.Echo) error {
 
 	}
 
-	defer file.Close()
+	defer f.Close()
 
-	d, err := mp3.NewDecoder(file)
+	d, err := mp3.NewDecoder(f)
 
 	if err != nil {
 

@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 	"os"
 	"os/exec"
 	"runtime"
@@ -14,32 +13,22 @@ import (
 	"github.com/paij0se/ymp3cli/src/client"
 	"github.com/paij0se/ymp3cli/src/rpc"
 	"github.com/paij0se/ymp3cli/src/server"
-	"github.com/phayes/freeport"
 )
 
 var (
-	version       = "0.6.1"
+	version       = "0.6.2"
 	help          bool
 	update        bool
 	showVersion   bool
 	speed         string
 	url           string
 	urlSoundcloud string
-	spotify       string
 	port          int
 	song          string
 )
 
 func startServer() (err error) {
-
-	if port == 0 {
-		port, err = freeport.GetFreePort()
-		if err != nil {
-			fmt.Println("Error getting free port")
-			return
-		}
-	}
-
+	port = 8888
 	go rpc.Rpc(port)
 	go client.StartClient(fmt.Sprintf(":%d", port))
 	server.StartServer(fmt.Sprintf(":%d", port))
@@ -61,16 +50,12 @@ func init() {
 	flag.StringVar(&urlSoundcloud, "sd", "", "download a song from soundcloud ")
 	flag.StringVar(&urlSoundcloud, "soundcloud", "", "download a song from soundcloud ")
 
-	flag.StringVar(&spotify, "sp", "", "download a song from spotify ")
-	flag.StringVar(&spotify, "spotify", "", "download a song from spotify ")
-
 	flag.StringVar(&song, "p", "", "play a single song")
 	flag.StringVar(&song, "play", "", "play a single song")
 
 	flag.BoolVar(&update, "update", false, "update ymp3cli to the latest version")
 	flag.BoolVar(&update, "u", false, "update ymp3cli to the latest version")
 
-	flag.IntVar(&port, "port", 0, "port to run the server on")
 	flag.Parse()
 }
 
@@ -102,13 +87,6 @@ func main() {
 		soundcloud.ExtractSong(urlSoundcloud)
 	} else if update {
 		cli.Update()
-	} else if spotify != "" {
-		cmd := exec.Command("/bin/bash", "-c", "spotdl "+spotify)
-		cmd.Stdout = os.Stdout
-		cmd.Stderr = os.Stderr
-		if err := cmd.Run(); err != nil {
-			log.Fatal(err)
-		}
 	} else if showVersion {
 		fmt.Println(version)
 	} else {

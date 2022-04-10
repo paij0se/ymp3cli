@@ -6,8 +6,10 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"regexp"
 	"time"
 
+	"github.com/dhowden/tag"
 	"github.com/faiface/beep"
 	"github.com/faiface/beep/mp3"
 	"github.com/faiface/beep/speaker"
@@ -28,13 +30,22 @@ func PlayAllSongs(e *echo.Echo) error {
 		if err != nil {
 			log.Fatal(err)
 		}
+		defer f.Close()
 		fmt.Println("Playing:", file.Name())
 		e.GET("/currentSong", func(c echo.Context) error {
 			dir, err := os.Getwd()
 			if err != nil {
 				return c.String(http.StatusInternalServerError, err.Error())
 			}
-			return c.String(http.StatusOK, dir+"/music/"+file.Name())
+			song, _ := os.Open("music/" + file.Name())
+			defer song.Close()
+			tag, err := tag.ReadFrom(song)
+			if err != nil {
+				log.Println(err)
+				return c.String(http.StatusInternalServerError, err.Error())
+			}
+			match := regexp.MustCompile(`(|v\/|vi=|vi\/|youtu.be\/)[a-zA-Z0-9_-]{11}`)
+			return c.JSON(http.StatusOK, map[string]string{"path": dir + "/music/" + f.Name(), "by": tag.Artist(), "title": tag.Title(), "img": "https://img.youtube.com/vi/" + match.FindString(tag.Comment()) + "/hqdefault.jpg", "file": f.Name(), "url": tag.Comment()})
 		})
 		streamer, format, err := mp3.Decode(f)
 		if err != nil {

@@ -19,7 +19,6 @@ require (
 	github.com/labstack/echo v3.3.10+incompatible
 	github.com/manifoldco/promptui v0.9.0
 	github.com/paij0se/lmmp3 v1.0.0
-	github.com/phayes/freeport v0.0.0-20220201140144-74d24b5ae9f5
 	github.com/spf13/cobra v1.3.0
 	github.com/torden/go-strutil v0.1.5
 )
