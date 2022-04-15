@@ -18,8 +18,8 @@ require (
 	github.com/imthaghost/scdl v1.0.0
 	github.com/labstack/echo v3.3.10+incompatible
 	github.com/manifoldco/promptui v0.9.0
-	github.com/paij0se/lmmp3 v1.0.0
-	github.com/spf13/cobra v1.3.0
+	github.com/paij0se/lmmp3 v1.0.2
+	github.com/spf13/cobra v1.4.0
 	github.com/torden/go-strutil v0.1.5
 )
 
@@ -29,11 +29,11 @@ require (
 	github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/dlclark/regexp2 v1.4.1-0.20201116162257-a2a8dda75c91 // indirect
-	github.com/dop251/goja v0.0.0-20211211112501-fb27c91c26ed // indirect
+	github.com/dop251/goja v0.0.0-20220214123719-b09a6bfa842f // indirect
 	github.com/gdamore/encoding v1.0.0 // indirect
 	github.com/go-sourcemap/sourcemap v2.1.3+incompatible // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
-	github.com/kkdai/youtube/v2 v2.7.8 // indirect
+	github.com/kkdai/youtube/v2 v2.7.11 // indirect
 	github.com/labstack/gommon v0.3.0 // indirect
 	github.com/lucasb-eyer/go-colorful v1.0.3 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
@@ -50,8 +50,8 @@ require (
 	golang.org/x/exp v0.0.0-20200224162631-6cc2880d07d6 // indirect
 	golang.org/x/image v0.0.0-20190802002840-cff245a6509b // indirect
 	golang.org/x/mobile v0.0.0-20190719004257-d2bd2a29d028 // indirect
-	golang.org/x/net v0.0.0-20211215060638-4ddde0e984e9 // indirect
-	golang.org/x/sys v0.0.0-20220310020820-b874c991c1a5 // indirect
+	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
+	golang.org/x/sys v0.0.0-20220315194320-039c03cc5b86 // indirect
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	gopkg.in/natefinch/npipe.v2 v2.0.0-20160621034901-c1b8fa8bdcce // indirect

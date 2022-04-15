@@ -16,7 +16,7 @@ import (
 )
 
 var (
-	version       = "0.6.2"
+	version       = "0.6.3"
 	help          bool
 	update        bool
 	showVersion   bool
@@ -28,7 +28,7 @@ var (
 )
 
 func startServer() (err error) {
-	port = 8888
+	port = 8888 // You can change the port if you want
 	go rpc.Rpc(port)
 	go client.StartClient(fmt.Sprintf(":%d", port))
 	server.StartServer(fmt.Sprintf(":%d", port))
