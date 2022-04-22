@@ -51,8 +51,6 @@ $ ymp3cli --h
   -d ,-download: Download a song from youtube
   -s ,-speed: That allows changing the playback speed
   -sd ,-soundcloud: Download a song from soundcloud
-  -sp ,-spotify: Download a song from spotify
-  -port: Port to run the server on
 
   Usage: ymp3cli -p [SONG]
   ymp3cli -p <song.mp3>: play a single song
