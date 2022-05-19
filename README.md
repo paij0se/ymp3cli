@@ -14,6 +14,11 @@ https://user-images.githubusercontent.com/69026987/153721642-be1a61c7-aa3c-4ec9-
 	
 </div>
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=paij0se/ymp3cli&type=Date)](https://star-history.com/#paij0se/ymp3cli&Date)
+
+
 <h1>Why???</h1>
 idk, is free.
 
