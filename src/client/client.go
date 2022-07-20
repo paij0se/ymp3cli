@@ -47,11 +47,11 @@ var questions = []handlers.BaseQuestion{
 		},
 	},
 	{
-		Name: "Suffle the Playlist🔄",
+		Name: "Listen your Playlist🔄",
 		Option: &handlers.QuestionOption{
 			Handler:   controllers.PlaySoundAll,
-			Label:     "Enter any number to shuffle the Playlist🔄",
-			Options:   controllers.GetSongs,
+			Label:     "Playing your Playlist🔄",
+			Options:   controllers.Playlist,
 			Validator: validators.Number,
 		},
 	},
