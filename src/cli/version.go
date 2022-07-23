@@ -36,6 +36,5 @@ func CheckVersion(v string) {
 		fmt.Println("https://github.com/paij0se/ymp3cli/releases/latest")
 		time.Sleep(time.Second * 10)
 	}
-	fmt.Println("You are using the latest version 😎")
 
 }
