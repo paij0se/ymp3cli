@@ -6,7 +6,8 @@
 
 <h1>Discord RPC</h1>
 
-<img src="https://media.discordapp.net/attachments/957431274237218849/957681287458590810/unknown.png"/>
+![unknown](https://user-images.githubusercontent.com/69026987/180650454-751a1133-6b59-41a5-a26a-173cb10c9d97.png)
+
 	
 <h1>Change the playback speed<h1>
 
@@ -18,9 +19,6 @@ https://user-images.githubusercontent.com/69026987/153721642-be1a61c7-aa3c-4ec9-
 
 [![Star History Chart](https://api.star-history.com/svg?repos=paij0se/ymp3cli&type=Date)](https://star-history.com/#paij0se/ymp3cli&Date)
 
-
-<h1>Why???</h1>
-idk, is free.
 
 <h1>Prerequisites</h1>
 
@@ -99,9 +97,14 @@ Build ymp3cli with `go build -o ymp3cli src/main.go`
 
 and for execute ymp3cli just run `./ymp3cli`.
 
-<h1>Config</h1>
+<h1>Config File</h1>
 
-In /home/user/.ymp3cli/config.yaml
+Linux & Mac
+`/home/user/.ymp3cli/config.yaml`
+
+Windows
+`C:\.ymp3cli\config.yaml`
+
 
 ```yaml
 # port: the port that the server will listen on
