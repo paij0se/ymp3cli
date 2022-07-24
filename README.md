@@ -121,11 +121,6 @@ port: 8888
 - [ ] A playlists system
 - [x] able to play a song one by one
 
-<h1>Custom clients?</h1>
-- visit the wiki https://github.com/paij0se/ymp3cli/wiki/Routes
-
-<h1>Alternative clients</h1>
-- The old deno client https://github.com/bruh-boys/ymp3cli-old-client
 
 <h1>Thanks to</h1>
 - Flames https://github.com/FlamesX-128
