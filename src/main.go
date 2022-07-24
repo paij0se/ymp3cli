@@ -16,22 +16,20 @@ import (
 )
 
 var (
-	version       = "0.7.1"
+	version       = "0.7.2"
 	help          bool
 	update        bool
 	showVersion   bool
 	speed         string
 	url           string
 	urlSoundcloud string
-	port          int
 	song          string
 )
 
 func startServer() (err error) {
-	port = 8888 // You can change the port if you want
-	go rpc.Rpc(port)
-	go client.StartClient(fmt.Sprintf(":%d", port))
-	server.StartServer(fmt.Sprintf(":%d", port))
+	go rpc.Rpc(cli.ReadFromYaml("port"))
+	go client.StartClient(fmt.Sprintf(":%d", cli.ReadFromYaml("port")))
+	server.StartServer(fmt.Sprintf(":%d", cli.ReadFromYaml("port")))
 	return
 }
 func init() {
@@ -60,6 +58,7 @@ func init() {
 }
 
 func main() {
+	cli.CreateConfigDirectory()
 	cli.CheckVersion(version)
 	go cli.Stats()
 	// create the folder if it doesn't exist

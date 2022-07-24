@@ -99,6 +99,15 @@ Build ymp3cli with `go build -o ymp3cli src/main.go`
 
 and for execute ymp3cli just run `./ymp3cli`.
 
+<h1>Config</h1>
+
+In /home/user/.ymp3cli/config.yaml
+
+```yaml
+# port: the port that the server will listen on
+port: 8888
+```
+
 <h1>TODO:</h1>
 
 - [x] client in golang
